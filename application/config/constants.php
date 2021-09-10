@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |--------------------------------------------------------------------------
 */
 define('LOGO', '');
-define('SISTEMA', 'Micrositio');
+define('SISTEMA', 'MICROSITIOS | SETAB');
 
 /*
 |--------------------------------------------------------------------------
