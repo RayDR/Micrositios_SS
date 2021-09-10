@@ -34,6 +34,18 @@ class Home extends CI_Controller {
                                                             'titulo'    => 'Título noticia',
                                                             'subtitulo' => 'Subtítulo noticia',
                                                             'resumen'   => 'Breve descripción de la noticia'
+                                                         ),
+                                                         (object) array(
+                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
+                                                            'titulo'    => 'Título noticia',
+                                                            'subtitulo' => 'Subtítulo noticia',
+                                                            'resumen'   => 'Breve descripción de la noticia'
+                                                         ),
+                                                         (object) array(
+                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
+                                                            'titulo'    => 'Título noticia',
+                                                            'subtitulo' => 'Subtítulo noticia',
+                                                            'resumen'   => 'Breve descripción de la noticia'
                                                          )
                                                       ),
                                     'indicadores'  => $area->nombre,
@@ -44,7 +56,18 @@ class Home extends CI_Controller {
                                                             'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
                                                             'cargo'     => 'SECRETARIA GENERAL', 
                                                             'contacto'  => '00000 ext. 123' 
-                                                         )
+                                                         ),
+                                                         (object) array( 
+                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
+                                                            'cargo'     => 'SECRETARIA GENERAL', 
+                                                            'contacto'  => '00000 ext. 123' 
+                                                         ),
+                                                         (object) array( 
+                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
+                                                            'cargo'     => 'SECRETARIA GENERAL', 
+                                                            'contacto'  => '00000 ext. 123' 
+                                                         ),
+                                                         
                                                       )
                                  ),
          );

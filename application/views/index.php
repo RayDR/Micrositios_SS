@@ -159,8 +159,13 @@
       </div>
     </div>
 
-    <?php foreach($elementos->directorio as $key => $directorio): ?>
+
     <div class="row justify-content-center">
+    <?php foreach($elementos->directorio as $key => $directorio): ?>
+      <?php if($key == 0): ?>
+        <div class="col-12 mb-5">
+          <div class="row d-flex justify-content-center align-items-center mx-auto">
+      <?php endif; ?>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="card">
           <img class="card-img p-0" src="https://tabasco.gob.mx/sites/default/files/styles/titular_dependencia/public/2020-01/FOTO%20SECRETARIA.jpg?itok=A4-Dii_O" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px;" />
@@ -173,8 +178,12 @@
           </div>
         </div>
       </div>
+      <?php if ( $key == 0): ?>
+          </div>
+        </div>
+      <?php endif; ?>
+    <?php endforeach ?>    
     </div>
-    <?php endforeach ?>
   </div>
 </div>
 <?php endif ?>
