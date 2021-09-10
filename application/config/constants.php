@@ -6,8 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | NOMBRE DE LA APLICACIÓN
 |--------------------------------------------------------------------------
 */
-define('LOGO', 'Instituto de la Educación para Adultos de Tabasco');
-define('SISTEMA', 'IEAT Micrositio');
+define('LOGO', '');
+define('SISTEMA', 'Micrositio');
 
 /*
 |--------------------------------------------------------------------------

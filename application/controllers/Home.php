@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 
 	public function index(){		
 		$data=array(
-			'titulo'			=>	'Bienvenido a ' . SISTEMA,
+			'title'  			=>	'Bienvenido a ' . SISTEMA,
 			'template'			=>	$this->template,
 			'view'				=>	'index',
 			'comunicados'		=>	array(),
@@ -27,7 +27,7 @@ class Home extends CI_Controller {
 			$ajax = ( $this->input->post('ajax') == true )? TRUE : FALSE;
 
 		$data=array(
-			'titulo'			=>	'404 - Página No Encontrada | ' . SISTEMA,
+			'title'  			=>	'404 - Página No Encontrada | ' . SISTEMA,
 			'template'			=>	$this->template,
 			'view'				=>	'template/plantilla/404'
 		);
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 			$ajax = ( $this->input->post('ajax') == true )? TRUE : FALSE;
 
 		$data=array(
-			'titulo'			=>	'Acceso Restringido | ' . SISTEMA,
+			'title'  			=>	'Acceso Restringido | ' . SISTEMA,
 			'template'			=>	$this->template,
 			'view'				=>	'template/plantilla/permisos'
 		);
