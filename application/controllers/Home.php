@@ -28,15 +28,22 @@ class Home extends CI_Controller {
             'view'            => 'index',
             'elementos'       => (object) array(
                                     'nombre'       => $area->nombre,
-                                    'noticias'     => $area->nombre,
+                                    'noticias'     => (object) array(
+                                                         (object) array(
+                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
+                                                            'titulo'    => 'Título noticia',
+                                                            'subtitulo' => 'Subtítulo noticia',
+                                                            'resumen'   => 'Breve descripción de la noticia'
+                                                         )
+                                                      ),
                                     'indicadores'  => $area->nombre,
                                     'mision'       => $area->mision,
                                     'vision'       => $area->vision,
                                     'directorio'   => (object) array(
                                                          (object) array( 
-                                                            'nombre' => 'DRA. EGLA CORNELIO LANDERO', 
-                                                            'cargo' => 'SECRETARIA GENERAL', 
-                                                            'contacto' => '00000 ext. 123' 
+                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
+                                                            'cargo'     => 'SECRETARIA GENERAL', 
+                                                            'contacto'  => '00000 ext. 123' 
                                                          )
                                                       )
                                  ),
