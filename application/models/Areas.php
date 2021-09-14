@@ -41,6 +41,82 @@ class Areas extends CI_Model {
 
    }
 
+   /**
+   *  Función que obtiene las noticias de área
+   *  @function   get_estudiante
+   *  @param   integer  $areaID
+   *  @param   array    $filtros
+   *  @param   array    $ordenadores
+   *  @param   boolean  $modoRetorno
+   **/
+
+   public function get_noticias($areaID, $filtros = NULL, $ordenadores = NULL, $modoRetorno = TRUE){
+      // Opciones de filtrado adicional
+      if( is_array($filtros) ){
+         foreach ($filtros as $campo => $filtro) {
+            if ( is_string($campo) )
+               $this->db->where($campo, $filtro);
+            else
+               $this->db->where($filtro);
+         }
+      }
+      // Opciones de ordenamiento
+      if( is_array($ordenadores) ){
+         foreach ($ordenadores as $campo => $orden) {
+            if ( is_string($campo) )
+               $this->db->where($campo, $orden);
+            else
+               $this->db->where($orden);
+         }
+      }
+
+      $this->db->where('areaid', $areaID);
+      $query = $this->db->get('microsites.notes');
+      if ( $modoRetorno )
+         return $query->result();
+      else
+         return $query->result_array();
+
+   }
+
+   /**
+   *  Función que obtiene el directorio de un área
+   *  @function   get_estudiante
+   *  @param   integer  $areaID
+   *  @param   array    $filtros
+   *  @param   array    $ordenadores
+   *  @param   boolean  $modoRetorno
+   **/
+
+   public function get_directorio($areaID, $filtros = NULL, $ordenadores = NULL, $modoRetorno = TRUE){
+      // Opciones de filtrado adicional
+      if( is_array($filtros) ){
+         foreach ($filtros as $campo => $filtro) {
+            if ( is_string($campo) )
+               $this->db->where($campo, $filtro);
+            else
+               $this->db->where($filtro);
+         }
+      }
+      // Opciones de ordenamiento
+      if( is_array($ordenadores) ){
+         foreach ($ordenadores as $campo => $orden) {
+            if ( is_string($campo) )
+               $this->db->where($campo, $orden);
+            else
+               $this->db->where($orden);
+         }
+      }
+
+      $this->db->where('areaid', $areaID);
+      $query = $this->db->get('microsites.notes');
+      if ( $modoRetorno )
+         return $query->result();
+      else
+         return $query->result_array();
+
+   }
+
 }
 
 /* End of file Areas.php */

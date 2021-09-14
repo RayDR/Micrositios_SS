@@ -19,8 +19,12 @@ class Home extends CI_Controller {
 
    public function index($areaID = NULL){
       $this->load->model('areas');
-      $areaID  = (is_integer($areaID))? $areaID : 1;
+      $areaID  = $areaID;
       $area    = $this->areas->get_area($areaID);
+      $noticias= $this->areas->get_noticias($areaID);
+
+      $directorio = $this->areas->get_directorio($areaID);
+
       if( $area ){
          $data=array(
             'title'           => "{$area->nombre} | " . SISTEMA,
@@ -28,27 +32,9 @@ class Home extends CI_Controller {
             'view'            => 'index',
             'elementos'       => (object) array(
                                     'nombre'       => $area->nombre,
-                                    'noticias'     => (object) array(
-                                                         (object) array(
-                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
-                                                            'titulo'    => 'Título noticia',
-                                                            'subtitulo' => 'Subtítulo noticia',
-                                                            'resumen'   => 'Breve descripción de la noticia'
-                                                         ),
-                                                         (object) array(
-                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
-                                                            'titulo'    => 'Título noticia',
-                                                            'subtitulo' => 'Subtítulo noticia',
-                                                            'resumen'   => 'Breve descripción de la noticia'
-                                                         ),
-                                                         (object) array(
-                                                            'imagen'    => 'https://tabasco.gob.mx/sites/default/files/users/setabasco/Carrusel-1B.jpg',
-                                                            'titulo'    => 'Título noticia',
-                                                            'subtitulo' => 'Subtítulo noticia',
-                                                            'resumen'   => 'Breve descripción de la noticia'
-                                                         )
-                                                      ),
-                                    'indicadores'  => $area->nombre,
+                                    'imagenes'     => $area->json,
+                                    'noticias'     => $noticias,
+                                    'indicadores'  => TRUE,
                                     'mision'       => $area->mision,
                                     'vision'       => $area->vision,
                                     'directorio'   => (object) array(
@@ -57,17 +43,6 @@ class Home extends CI_Controller {
                                                             'cargo'     => 'SECRETARIA GENERAL', 
                                                             'contacto'  => '00000 ext. 123' 
                                                          ),
-                                                         (object) array( 
-                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
-                                                            'cargo'     => 'SECRETARIA GENERAL', 
-                                                            'contacto'  => '00000 ext. 123' 
-                                                         ),
-                                                         (object) array( 
-                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
-                                                            'cargo'     => 'SECRETARIA GENERAL', 
-                                                            'contacto'  => '00000 ext. 123' 
-                                                         ),
-                                                         
                                                       )
                                  ),
          );
