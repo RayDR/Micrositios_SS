@@ -103,7 +103,7 @@
 
 <!-- Indicadores -->
 <?php if ( $elementos->indicadores ): ?>
-<div id="indicadores" class="">
+<div id="indicadores" class="container">
   <div id="mapa-indicadores" data-highcharts-chart="0" style="overflow: hidden;"></div>
 </div>
 <?php endif ?>
@@ -162,16 +162,14 @@
         <div class="col-12 mb-5">
           <div class="row d-flex justify-content-center align-items-center mx-auto">
       <?php endif; ?>
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card">
-          <img class="card-img p-0" src="https://tabasco.gob.mx/sites/default/files/styles/titular_dependencia/public/2020-01/FOTO%20SECRETARIA.jpg?itok=A4-Dii_O" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px;" />
+          <img class="card-img p-0" src="<?= $directorio->id ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px;" />
           <div class="card-body my-3">
-            <h6 class="card-title text-primary font-weight-bold"><?= $directorio->nombre ?></h6>
-            <h6 class="font-weight-bold"><?= $directorio->cargo ?></h6>
+            <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
+            <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
           </div>
-          <div class="card-footer">
-            <small><?= $directorio->contacto ?></small>
-          </div>
+          <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
         </div>
       </div>
       <?php if ( $key == 0): ?>
@@ -199,7 +197,7 @@
   new Glide('.glide').mount();
 </script>
 <!-- Código del mapa Indicadores -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/data.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>

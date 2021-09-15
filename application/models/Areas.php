@@ -107,9 +107,11 @@ class Areas extends CI_Model {
                $this->db->where($orden);
          }
       }
+      $this->db->or_where('areaid', 0);
+      $this->db->or_where('areaid', $areaID);
+      
+      $query = $this->db->get('microsites.persons');
 
-      $this->db->where('areaid', $areaID);
-      $query = $this->db->get('microsites.notes');
       if ( $modoRetorno )
          return $query->result();
       else

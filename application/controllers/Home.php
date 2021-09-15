@@ -19,7 +19,8 @@ class Home extends CI_Controller {
 
    public function index($areaID = NULL){
       $this->load->model('areas');
-      $areaID  = $areaID;
+      $areaID  = ($areaID)? $areaID : 1;
+      $areaID  = ($areaID === 'index')? 1 : $areaID;
       $area    = $this->areas->get_area($areaID);
       $noticias= $this->areas->get_noticias($areaID);
 
@@ -37,13 +38,7 @@ class Home extends CI_Controller {
                                     'indicadores'  => TRUE,
                                     'mision'       => $area->mision,
                                     'vision'       => $area->vision,
-                                    'directorio'   => (object) array(
-                                                         (object) array( 
-                                                            'nombre'    => 'DRA. EGLA CORNELIO LANDERO', 
-                                                            'cargo'     => 'SECRETARIA GENERAL', 
-                                                            'contacto'  => '00000 ext. 123' 
-                                                         ),
-                                                      )
+                                    'directorio'   => (object) $directorio
                                  ),
          );
          $this->load->view( $this->contenido, $data );
