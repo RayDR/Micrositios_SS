@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group   = ENVIRONMENT;
 $query_builder  = TRUE;
 
-$db_hostname    = '192.168.0.40';
+$db_hostname    = '10.57.18.18';
 
-$db_database    = 'postgres_prd_x';
+$db_database    = 'postgres';
 
 $db_username    = 'postgres';
 $db_password    = 'Zetina2021**';

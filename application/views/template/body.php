@@ -1,4 +1,5 @@
-<!-- Encabezados/Menú -->
+<!DOCTYPE html>
+<html lang="es">
 <?php $this->load->view($template.'header'); ?>
 
 <body>	

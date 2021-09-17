@@ -24,6 +24,16 @@
 
       <div class="hidden-sm-down text-uppercase">
         <ul class="navbar-nav">
+        <?php if ( $elementos->mision ): ?>
+          <li class="nav-item px-1 ">
+            <a class="nav-link texto-navegacion" href="#cultura">MISIÓN</a>
+          </li>
+        <?php endif ?>
+          <?php if ( $elementos->vision ): ?>
+          <li class="nav-item px-1 ">
+            <a class="nav-link texto-navegacion" href="#cultura">VISIÓN</a>
+          </li>
+        <?php endif ?>
           <?php if ( $elementos->noticias ): ?>
           <li class="nav-item px-1 ">
             <a class="nav-link texto-navegacion" href="#noticias">NOTICIAS</a>
@@ -32,16 +42,6 @@
           <?php if ( $elementos->indicadores ): ?>
           <li class="nav-item px-1 ">
             <a class="nav-link texto-navegacion" href="#indicadores">INDICADORES</a>
-          </li>
-        <?php endif ?>
-          <?php if ( $elementos->mision ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#mision">MISIÓN</a>
-          </li>
-        <?php endif ?>
-          <?php if ( $elementos->vision ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#vision">VISIÓN</a>
           </li>
         <?php endif ?>
           <?php if ( $elementos->directorio ): ?>
@@ -65,21 +65,52 @@
   </div>
 </div>
 
+<!-- Misión -->
+<?php if ( $elementos->mision ): ?>
+<div id="cultura" class="py-5 my-5">
+  <div class="container py-2">
+    <div class="row app-align-center">
+        <div class="col-12 col-md-6">          
+          <h5 class="text-primary text-uppercase">MISIÓN</h5>
+          <hr class="bg-primary my-1 mr-md-2">
+          <p class="mr-md-2"><?= $elementos->mision ?></p>
+        </div>
+        <div class="col-12 col-md-6 text-right mb-auto">
+          <h5 class="text-primary text-uppercase">VISIÓN</h5>
+          <hr class="bg-primary my-1 ml-md-2">
+          <p class="ml-md-2"><?= $elementos->vision ?></p>
+        </div>
+    </div>
+  </div>
+</div>
+<?php endif ?>
+<!-- /Misión -->
+
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
-  <?php if ( is_object($elementos->noticias) ): ?>
   <div id="noticias" class="my-0 py-0 container-fluid">
     <div class="row app-align-center">
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
+          <ul class="glide__slides continaer">
             <?php foreach ($elementos->noticias as $key => $noticia): ?>
             <li class="glide__slide text-center">
-              <img class="img-fluid" src="<?= $noticia->imagen ?>" alt="<?= $noticia->titulo ?>">
-              <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
-                <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
-                <p class="text-white"><?= $noticia->resumen ?></p>
+              <?php if ( (($key + 1) % 3 == 0) || $key == 0 ): // Divide en 3 tarjetas?>
+                <?php if ( $key != 0 ): ?></div><?php endif ?>
+                <div class="row px-5">
+              <?php endif; ?>
+              
+              <div class="col-4 mx-auto text-center">
+                <div class="card mx-auto" style="border: 0;">
+                  <img class="card-img-top" src="<?= (isset($noticia->imagen))? $noticia->imagen : 'NOTFOUND' ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_DORADO.png') ?>'" alt="<?= $noticia->titulo ?>">
+                  <div class="card-body m-2 d-none d-md-block">
+                    <h5 class="text-primary card-title"><?= $noticia->titulo ?></h5>
+                    <p class="card-text small m-2 d-none d-xl-block"><?= $noticia->resumen ?></p>
+                  </div>
+                </div>
               </div>
+
+              <?php if ( $key+1 == count($elementos->noticias) ): ?></div><?php endif ?>
             </li>
             <?php endforeach ?>
           </ul>
@@ -92,52 +123,18 @@
       </div>
     </div>
   </div>
-  <?php endif ?>
 <?php else: ?>
-
-  <div id="noticias" class="my-0 py-0 container-fluid py-53">
+  <div id="noticias" class="my-0 container-fluid py-3">
     <h3 class="text-center py-5 text-muted">No hay noticias para mostrar.</h3>
   </div>
 <?php endif ?>
 <!-- /Noticias -->
 
-<!-- Indicadores -->
-<?php if ( $elementos->indicadores ): ?>
-<div id="indicadores" class="container">
-  <div id="mapa-indicadores" data-highcharts-chart="0" style="overflow: hidden;"></div>
-</div>
-<?php endif ?>
-<!-- /Indicadores -->
-
-<!-- Misión -->
-<?php if ( $elementos->mision ): ?>
-<div id="mision">
-  <div class="container py-2">
-    <div class="row app-align-center">
-        <div class="col-12 col-md-7 col-lg-6">
-          
-          <h5 class="text-primary text-uppercase mb-2">MISIÓN</h5>
-          <hr class="bg-primary">
-          <p><?= $elementos->mision ?></p>
-        </div>
-        <div id="imagen-mision" class="col-md-5 col-lg-6" style="min-height: 300px; border-radius: 15px;"></div>
-    </div>
-  </div>
-</div>
-<?php endif ?>
-<!-- /Misión -->
-
 <!-- Visión -->
 <?php if ( $elementos->vision ): ?>
 <div id="vision">
-  <div class="container py-2">
-    <div class="row app-align-center">
-        <div id="imagen-vision" class="col-md-5 col-lg-6" style="min-height: 300px; border-radius: 15px;"></div>
-        <div class="col-12 col-md-7 col-lg-6">
-          <h5 class="text-primary text-uppercase mb-2">VISIÓN</h5>
-          <hr class="bg-primary">
-          <p><?= $elementos->vision ?></p>
-        </div>
+  <div class="container py-2 mb-3">
+    <div class="row d-flex justify-content-end">
     </div>
   </div>
 </div>
@@ -147,25 +144,23 @@
 <!-- Directorio -->
 <?php if ( is_object($elementos->directorio) ): ?>
 <div id="directorio" class="block block-secondary" style="padding: 3em">
-  <div class="container text-xs-center">
-    <div class="row mb-5">
-      <div class="col-xs-10 offset-xs-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
-        <h5 class="text-primary text-uppercase mb-2">DIRECTORIO</h5>
-        <hr class="bg-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h5 class="text-primary text-uppercase text-center mb-2">DIRECTORIO</h5>
       </div>
+      <hr class="bg-primary col-10 col-md-6">
     </div>
-
-
     <div class="row justify-content-center">
     <?php foreach($elementos->directorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
-        <div class="col-12 mb-5">
+        <div class="col-12 mb-5 mx-auto">
           <div class="row d-flex justify-content-center align-items-center mx-auto">
       <?php endif; ?>
-      <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-        <div class="card">
-          <img class="card-img p-0" src="<?= $directorio->id ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px;" />
-          <div class="card-body my-3">
+      <div class="col-6 col-md-4 col-lg-4 d-flex align-items-stretch">
+        <div class="card text-center p-1">
+          <img class="card-img" src="<?= $directorio->id ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 350: 300 ?>px;" />
+          <div class="card-body my-3 text-center">
             <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
             <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
           </div>
@@ -176,12 +171,67 @@
           </div>
         </div>
       <?php endif; ?>
-    <?php endforeach ?>    
+    <?php endforeach ?>
     </div>
   </div>
 </div>
 <?php endif ?>
 <!-- /Directorio -->
+
+
+<!-- Indicadores -->
+<?php if ( $elementos->indicadores ): ?>
+<div id="indicadores" class="block block-secondary app-block-marketing-grid">
+  <div class="container text-xs-center" style="padding-bottom: 3em">
+    <div class="row mb-5">
+      <div class="col-xs-10 offset-xs-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+        <h6 class="text-muted text-uppercase mb-2">
+          PRINCIPALES INDICADORES
+        </h6>
+        <h3 class="mb-4">CICLO 2021 - 2022</h3>
+      </div>
+    </div>    
+    <div id="mapa-indicadores" data-highcharts-chart="0" style="overflow: hidden;"></div>
+    <div class="row app-marketing-grid">
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-9.svg')?>">
+        <p>
+          <strong>NÚMERO DE ESCUELAS.</strong> QUE ACTUALMENTE ESTÁN EN
+          OPERACIÓN.
+        </p>
+      </div>
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-10.svg')?>">
+        <p>
+          <strong>NÚMERO DE ALUMNOS.</strong> ACTUALMENTE MATRICULADOS.
+        </p>
+      </div>
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-11.svg')?>">
+        <p>
+          <strong>FECHAS PRINCIPALES.</strong> PARA LOS TRÁMITES DE BECAS.
+        </p>
+      </div>
+    </div>
+
+    <div class="row app-marketing-grid">
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-12.svg')?>">
+        <p><strong>INDICADOR 2.</strong> DESCRIPCIÓN DEL INDICADOR 2.</p>
+      </div>
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-13.svg')?>">
+        <p><strong>INDICADOR 3.</strong> DESCRIPCIÓN DEL INDICADOR 3.</p>
+      </div>
+      <div class="col-md-4 px-4 mb-5">
+        <img class="mb-1 indicator" src="<?= base_url('sources/img/startup-14.svg')?>">
+        <p><strong>INDICADOR 4.</strong> DESCRIPCIÓN DEL INDICADOR 4.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Indicadores -->
+<?php endif; ?>
 
 <script src="<?= base_url('sources/lib/Glide/dist/glide.js') ?>" type="text/javascript"></script>
 <link texto-navegacion rel="stylesheet" type="text/css" href="<?= base_url('sources/lib/Glide/dist/css/glide.core.min.css') ?>">
@@ -224,7 +274,7 @@
   var jsonaux;
   $(function () {
     $.ajax({
-        url: "http://187.217.212.25/setabtest/api/pub/microsites/statics.jsp",
+        url: "https://webcore.setab.gob.mx/setabtest/api/pub/microsites/statics.jsp",
       })
       .then((data) => {
         points = data.data.map((e) => {

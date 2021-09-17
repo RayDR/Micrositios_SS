@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
 	<head>
 		<!-------------------- Declaración de METAS -------------------->
 		<meta charset="UTF-8">
