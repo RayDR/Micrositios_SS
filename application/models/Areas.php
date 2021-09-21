@@ -32,7 +32,7 @@ class Areas extends CI_Model {
          }
       }
 
-      $this->db->where('id', $areaID);
+      $this->db->where('shortname', $areaID);
       $query = $this->db->get('microsites.areas');
       if ( $modoRetorno )
          return $query->row();

@@ -158,7 +158,7 @@
           <div class="row d-flex justify-content-center align-items-center mx-auto">
       <?php endif; ?>
       <div class="col-6 col-md-4 col-lg-4 d-flex align-items-stretch">
-        <div class="card text-center p-1">
+        <div class="card text-center p-1" style="max-width: 250px">
           <img class="card-img" src="<?= $directorio->id ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 350: 300 ?>px;" />
           <div class="card-body my-3 text-center">
             <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>

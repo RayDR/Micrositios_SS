@@ -22,16 +22,16 @@
                 <g id="super-icons" transform="translate(65.000000, 158.000000)">
                     <g id="clock" transform="translate(732.000000, 0.000000)">
                         <rect id="Rectangle-21" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="193" height="193"></rect>
-                        <ellipse id="XMLID_126_" stroke="#1485E0" stroke-width="2" sketch:type="MSShapeGroup" cx="90.3935484" cy="28.9428571" rx="26.2365591" ry="26.2857143"></ellipse>
-                        <rect id="XMLID_125_" stroke="#1485E0" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" x="85.4086022" y="53.2571429" width="10.4946237" height="15.7714286"></rect>
-                        <ellipse id="XMLID_124_" stroke="#1485E0" stroke-width="4.1818" fill="#C4E1F7" sketch:type="MSShapeGroup" cx="90.3935484" cy="124.885714" rx="60.344086" ry="60.4571429"></ellipse>
+                        <ellipse id="XMLID_126_" stroke="#9D2449" stroke-width="2" sketch:type="MSShapeGroup" cx="90.3935484" cy="28.9428571" rx="26.2365591" ry="26.2857143"></ellipse>
+                        <rect id="XMLID_125_" stroke="#9D2449" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" x="85.4086022" y="53.2571429" width="10.4946237" height="15.7714286"></rect>
+                        <ellipse id="XMLID_124_" stroke="#9D2449" stroke-width="4.1818" fill="#9D2449" sketch:type="MSShapeGroup" cx="90.3935484" cy="124.885714" rx="60.344086" ry="60.4571429"></ellipse>
                         <g id="XMLID_679_" transform="translate(40.806452, 75.600000)">
                             <g id="XMLID_123_-Clipped">
                                 <mask id="mask-2" sketch:name="XMLID_51_" fill="white">
                                     <use xlink:href="#path-1"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <ellipse id="XMLID_123_" stroke="#1485E0" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-2)" cx="49.5870968" cy="49.2857143" rx="47.2258065" ry="47.3142857"></ellipse>
+                                <ellipse id="XMLID_123_" stroke="#9D2449" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-2)" cx="49.5870968" cy="49.2857143" rx="47.2258065" ry="47.3142857"></ellipse>
                             </g>
                             <g id="XMLID_122_-Clipped">
                                 <mask id="mask-4" sketch:name="XMLID_51_" fill="white">
@@ -51,21 +51,21 @@
                                     <use xlink:href="#path-7"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <path d="M49.5870968,49.2857143 L28.5978495,28.2571429" id="XMLID_120_" stroke="#1485E0" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-8)"></path>
+                                <path d="M49.5870968,49.2857143 L28.5978495,28.2571429" id="XMLID_120_" stroke="#9D2449" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-8)"></path>
                             </g>
                             <g id="XMLID_119_-Clipped">
                                 <mask id="mask-10" sketch:name="XMLID_51_" fill="white">
                                     <use xlink:href="#path-9"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <path d="M49.8494624,49.9428571 L80.0215054,49.9428571" id="XMLID_119_" stroke="#1485E0" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-10)"></path>
+                                <path d="M49.8494624,49.9428571 L80.0215054,49.9428571" id="XMLID_119_" stroke="#9D2449" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-10)"></path>
                             </g>
                             <g id="XMLID_118_-Clipped">
                                 <mask id="mask-12" sketch:name="XMLID_51_" fill="white">
                                     <use xlink:href="#path-11"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <path d="M65.3290323,34.8285714 L49.5870968,49.2857143" id="XMLID_118_" stroke="#1485E0" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-12)"></path>
+                                <path d="M65.3290323,34.8285714 L49.5870968,49.2857143" id="XMLID_118_" stroke="#9D2449" stroke-width="2" sketch:type="MSShapeGroup" mask="url(#mask-12)"></path>
                             </g>
                             <g id="XMLID_117_-Clipped">
                                 <mask id="mask-14" sketch:name="XMLID_51_" fill="white">
@@ -78,7 +78,7 @@
                                     <use xlink:href="#path-15"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <ellipse id="XMLID_116_" stroke="#1485E0" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-16)" cx="49.5870968" cy="49.2857143" rx="3.93548387" ry="3.94285714"></ellipse>
+                                <ellipse id="XMLID_116_" stroke="#9D2449" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-16)" cx="49.5870968" cy="49.2857143" rx="3.93548387" ry="3.94285714"></ellipse>
                             </g>
                             <g id="XMLID_741_-Clipped">
                                 <mask id="mask-18" sketch:name="XMLID_51_" fill="white">
@@ -91,7 +91,7 @@
                                     <use xlink:href="#path-19"></use>
                                 </mask>
                                 <g id="XMLID_51_"></g>
-                                <g id="lignes_time_2_" mask="url(#mask-20)" stroke="#1485E0" sketch:type="MSShapeGroup">
+                                <g id="lignes_time_2_" mask="url(#mask-20)" stroke="#9D2449" sketch:type="MSShapeGroup">
                                     <g transform="translate(5.247312, 5.257143)">
                                         <path d="M44.3397849,12.4857143 L44.3397849,0.657142857" id="XMLID_111_"></path>
                                         <path d="M40.4043011,6.17714286 L39.8795699,0.92" id="XMLID_110_"></path>
@@ -164,7 +164,7 @@
                                 <path d="M7.92043011,161.657143 L-147.924731,161.657143 L-147.924731,-67.0285714 L91.8774194,-67.0285714 L7.92043011,161.657143 Z" id="light_1_" opacity="0.44" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-22)"></path>
                             </g>
                         </g>
-                        <g id="XMLID_675_" transform="translate(73.602151, 36.171429)" stroke="#1485E0" sketch:type="MSShapeGroup">
+                        <g id="XMLID_675_" transform="translate(73.602151, 36.171429)" stroke="#9D2449" sketch:type="MSShapeGroup">
                             <path d="M29.1225806,0 L6.0344086,0 C3.0172043,0 0.131182796,0.525714286 0.131182796,3.68 L0.131182796,18.4 L34.2387097,18.4 L34.2387097,3.68 C34.1075269,0.525714286 32.1397849,0 29.1225806,0 L29.1225806,0 Z" id="XMLID_50_" stroke-width="4" fill="#FFFFFF"></path>
                             <path d="M4.98494624,5.91428571 L33.8451613,5.91428571" id="XMLID_49_" stroke-width="2" stroke-dasharray="2,2"></path>
                             <path d="M4.98494624,11.1714286 L33.8451613,11.1714286" id="XMLID_48_" stroke-width="2" stroke-dasharray="2,2"></path>

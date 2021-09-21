@@ -12,19 +12,20 @@ class Home extends CI_Controller {
 
    /** *******************  VISTAS  ****************** **/
 
-   function _remap($areaID) {
-      $this->index($areaID);
+   function _remap($areaKey) {
+      $this->index($areaKey);
    }
 
 
-   public function index($areaID = NULL){
+   public function index($areaKey = NULL){
       $this->load->model('areas');
-      $areaID  = ($areaID)? $areaID : 1;
-      $areaID  = ($areaID === 'index')? 1 : $areaID;
-      $area    = $this->areas->get_area($areaID);
-      $noticias= $this->areas->get_noticias($areaID);
+      $areaKey  = ($areaKey)? $areaKey : 'tecnologias';
+      $areaKey  = ($areaKey === 'index')? 'tecnologias' : $areaKey;
+      $area    = $this->areas->get_area($areaKey);
 
-      $directorio = $this->areas->get_directorio($areaID);
+      $noticias= $this->areas->get_noticias($area->id);
+
+      $directorio = $this->areas->get_directorio($area->id);
 
       if( $area ){
          $data=array(
