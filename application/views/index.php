@@ -182,6 +182,7 @@
 </div>
 <?php endif ?>
 <!-- /Directorio -->
+<?php print_r($elementos->directorio); ?>
 
 <script src="<?= base_url('sources/lib/Glide/dist/glide.js') ?>" type="text/javascript"></script>
 <link texto-navegacion rel="stylesheet" type="text/css" href="<?= base_url('sources/lib/Glide/dist/css/glide.core.min.css') ?>">
