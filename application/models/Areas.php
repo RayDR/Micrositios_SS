@@ -116,7 +116,7 @@ class Areas extends CI_Model {
       if ( $query->num_rows() > 0 ){
          // Obtener imagenes de attachments si se obtuvieron resultados
          foreach ($datos as $key => $elemento) {
-            $datos[$key] = (object)['attachments' => $this->get_attachment('179', $elemento->id)];
+            $datos[$key]['attachments'] = $this->get_attachment('179', $elemento->id);
          }
       }
 
