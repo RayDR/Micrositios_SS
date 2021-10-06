@@ -131,7 +131,7 @@ class Areas extends CI_Model {
       $this->db->where('jsat_module', $modulo);
       $this->db->where('jsat_recid', $idPersona);
 
-      return $this->db->get('jsattachments')->row();
+      return $this->db->get('webcore.jsattachments')->row();
    }
 
 }
