@@ -88,7 +88,7 @@ class Areas extends CI_Model {
    *  @param   boolean  $modoRetorno
    **/
 
-   public function get_directorio($areaID, $filtros = NULL, $ordenadores = NULL, $modoRetorno = TRUE){
+   public function get_directorio($areaID, $filtros = NULL, $ordenadores = NULL){
       // Opciones de filtrado adicional
       if( is_array($filtros) ){
          foreach ($filtros as $campo => $filtro) {
@@ -111,12 +111,27 @@ class Areas extends CI_Model {
       $this->db->or_where('areaid', $areaID);
       
       $query = $this->db->get('microsites.persons');
+      $datos = $query->result();
+      
+      if ( $query->num_rows() > 0 ){
+         // Obtener imagenes de attachments si se obtuvieron resultados
+         foreach ($datos as $key => $elemento) {
+            array_push($datos[$key], (object)['attachments' => $this->get_attachment('179', $elemento->id)]);
+         }
+      }
 
-      if ( $modoRetorno )
-         return $query->result();
-      else
-         return $query->result_array();
+      return $datos;
 
+   }
+
+   /**
+    * Función para obtener imagenes de attachments
+    **/
+   private function get_attachment($modulo, $idPersona){
+      $this->db->where('jsat_module', $modulo);
+      $this->db->where('jsat_recid', $idPersona);
+
+      return $this->db->get('jsattachments')->row();
    }
 
 }

@@ -177,6 +177,7 @@
 </div>
 <?php endif ?>
 <!-- /Directorio -->
+<?php print_r($elementos->directorio); ?>
 
 
 <!-- Indicadores -->
