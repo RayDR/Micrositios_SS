@@ -112,25 +112,27 @@
 <!-- Misión -->
 <div class="container py-2">
   <div class="row app-align-center">
-<?php if ( $elementos->mision ): ?>
-  <div class="col-12 col-md-6">
-    
+    <!-- Misión -->
+  <?php if ( $elementos->mision ): ?>
+  <div class="col-12 col-md-6">    
     <h5 class="text-primary text-uppercase mb-2">MISIÓN</h5>
     <hr class="bg-primary">
     <p><?= $elementos->mision ?></p>
   </div>
-<?php endif ?>
-<!-- /Misión -->
+  <?php endif ?>
+  <!-- /Misión -->
 
-<!-- Visión -->
-<?php if ( $elementos->vision ): ?>
-  <div class="col-12 col-12 col-md-6">
+  <!-- Visión -->
+  <?php if ( $elementos->vision ): ?>
+  <div class="col-12 col-md-6">
     <h5 class="text-primary text-uppercase mb-2">VISIÓN</h5>
     <hr class="bg-primary">
     <p><?= $elementos->vision ?></p>
   </div>
-<?php endif ?>
-<!-- /Visión -->
+  <?php endif ?>
+  <!-- /Visión -->
+  </div>
+</div>
 
 <!-- Directorio -->
 <?php if ( is_object($elementos->directorio) ): ?>
