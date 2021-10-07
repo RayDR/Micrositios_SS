@@ -173,7 +173,7 @@
       <div class="row justify-content-center mb-2">
       <!-- Secretarío -->
       <?php else: ?>
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card">
           <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 300px;" />
           <div class="card-body my-3">
