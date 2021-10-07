@@ -154,26 +154,25 @@
         <hr class="bg-primary">
       </div>
     </div>
-
-    <!-- Secretarío -->
-    <div class="row justify-content-center">
-      <div class="col-6 col-md-4  d-flex align-items-stretch">
-        <div class="card">
-          <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($elementos->directorio[0]->attachments): ?><?= array_key_exists('jsat_fname', $elementos->directorio[0]->attachments)? ($elementos->directorio[0]->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
-          <div class="card-body my-3">
-            <h6 class="card-title text-primary font-weight-bold"><?= $elementos->directorio[0]->fullname ?></h6>
-            <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
+    <!-- Personas -->
+    <?php foreach($elementos->directorio as $key => $directorio): ?>
+      <?php if($key == 0): ?>
+      <!-- Secretarío -->
+      <div class="row justify-content-center">
+        <div class="col-6 col-md-4  d-flex align-items-stretch">
+          <div class="card">
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($elementos->directorio->attachments): ?><?= array_key_exists('jsat_fname', $elementos->directorio->attachments)? ($elementos->directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
+            <div class="card-body my-3">
+              <h6 class="card-title text-primary font-weight-bold"><?= $elementos->directorio->fullname ?></h6>
+              <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
+            </div>
+            <small><a href="tel:+52<?= $elementos->directorio->phone ?>"><?= $elementos->directorio->phone ?></a> - <?= $elementos->directorio->phone_ext ?></small>
           </div>
-          <small><a href="tel:+52<?= $elementos->directorio[0]->phone ?>"><?= $elementos->directorio[0]->phone ?></a> - <?= $elementos->directorio[0]->phone_ext ?></small>
         </div>
       </div>
-    </div>
-    <!-- Secretarío -->
-
-    <!-- Directorio -->
-    <div class="row justify-content-center">
-    <?php foreach($elementos->directorio as $key => $directorio): ?>
-      <?php if($key > 0): ?>
+      <div class="row">
+      <!-- Secretarío -->
+      <?php else: ?>
       <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card">
           <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
@@ -185,8 +184,11 @@
         </div>
       </div>
       <?php endif; ?>
+      <?php if($key == count($elementos->directorio)): ?>
+      </div>
+      <?php endif ?>
     <?php endforeach ?> 
-    <!-- Directorio -->   
+    <!-- Personas -->   
     </div>
   </div>
 </div>
