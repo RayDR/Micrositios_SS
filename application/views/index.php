@@ -148,7 +148,7 @@
 <?php if ( is_object($elementos->directorio) ): ?>
 <div id="directorio" class="block block-secondary" style="padding: 3em">
   <div class="container text-center">
-    <div class="row mb-5">
+    <div class="row mb-2">
       <div class="col-xs-10 col-sm-8 col-lg-6 text-center mx-auto">
         <h5 class="text-primary text-uppercase mb-2">DIRECTORIO</h5>
         <hr class="bg-primary">
@@ -161,7 +161,7 @@
       <div class="row justify-content-center mb-3">
         <div class="col-6 col-md-6">
           <div class="card">
-            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px;" />
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 150px;" />
             <div class="card-body my-3">
               <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
               <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
