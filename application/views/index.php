@@ -149,7 +149,7 @@
 <div id="directorio" class="block block-secondary" style="padding: 3em">
   <div class="container text-center">
     <div class="row mb-5">
-      <div class="col-xs-10 offset-xs-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+      <div class="col-xs-10 col-sm-8 col-lg-6">
         <h5 class="text-primary text-uppercase mb-2">DIRECTORIO</h5>
         <hr class="bg-primary">
       </div>
@@ -159,7 +159,7 @@
       <?php if($key == 0): ?>
       <!-- Secretarío -->
       <div class="row justify-content-center mb-3">
-        <div class="col-6 col-md-4  d-flex align-items-stretch">
+        <div class="col-6 col-md-4 d-flex align-items-stretch">
           <div class="card">
             <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; max-width: 500px;" />
             <div class="card-body my-3">
