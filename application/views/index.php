@@ -147,7 +147,7 @@
 <!-- Directorio -->
 <?php if ( is_object($elementos->directorio) ): ?>
 <div id="directorio" class="block block-secondary" style="padding: 3em">
-  <div class="container text-xs-center">
+  <div class="container text-center">
     <div class="row mb-5">
       <div class="col-xs-10 offset-xs-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
         <h5 class="text-primary text-uppercase mb-2">DIRECTORIO</h5>
@@ -155,14 +155,26 @@
       </div>
     </div>
 
+    <!-- Secretarío -->
+    <div class="row justify-content-center">
+      <div class="col-6 col-md-4  d-flex align-items-stretch">
+        <div class="card">
+          <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($elementos->directorio[0]->attachments): ?><?= array_key_exists('jsat_fname', $elementos->directorio[0]->attachments)? ($elementos->directorio[0]->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
+          <div class="card-body my-3">
+            <h6 class="card-title text-primary font-weight-bold"><?= $elementos->directorio[0]->fullname ?></h6>
+            <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
+          </div>
+          <small><a href="tel:+52<?= $elementos->directorio[0]->phone ?>"><?= $elementos->directorio[0]->phone ?></a> - <?= $elementos->directorio[0]->phone_ext ?></small>
+        </div>
+      </div>
+    </div>
+    <!-- Secretarío -->
 
+    <!-- Directorio -->
     <div class="row justify-content-center">
     <?php foreach($elementos->directorio as $key => $directorio): ?>
-      <?php if($key == 0): ?>
-        <div class="col-12 mb-5">
-          <div class="row mx-auto">
-      <?php endif; ?>
-      <div class="col-6 col-md-4 <?= ($key > 0)? 'col-lg-3' : '' ?> d-flex align-items-stretch">
+      <?php if($key > 0): ?>
+      <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card">
           <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
           <div class="card-body my-3">
@@ -172,11 +184,9 @@
           <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
         </div>
       </div>
-      <?php if ( $key == 0): ?>
-          </div>
-        </div>
       <?php endif; ?>
-    <?php endforeach ?>    
+    <?php endforeach ?> 
+    <!-- Directorio -->   
     </div>
   </div>
 </div>
