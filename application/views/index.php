@@ -159,7 +159,7 @@
       <?php if($key == 0): ?>
       <!-- Secretarío -->
       <div class="row justify-content-center mb-3">
-        <div class="col-6 col-md-4 d-flex align-items-stretch">
+        <div class="col-6 col-md-6">
           <div class="card">
             <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; max-width: 500px;" />
             <div class="card-body my-3">
