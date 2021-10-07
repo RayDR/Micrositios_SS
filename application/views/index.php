@@ -28,12 +28,6 @@
           <li class="nav-item px-1 ">
             <a class="nav-link texto-navegacion" href="#noticias">NOTICIAS</a>
           </li>
-        <?php endif ?>
-          <?php if ( $elementos->indicadores ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#indicadores">INDICADORES</a>
-          </li>
-        <?php endif ?>
           <?php if ( $elementos->mision ): ?>
           <li class="nav-item px-1 ">
             <a class="nav-link texto-navegacion" href="#mision">MISIÓN</a>
@@ -47,6 +41,12 @@
           <?php if ( $elementos->directorio ): ?>
           <li class="nav-item px-1 ">
             <a class="nav-link texto-navegacion" href="#directorio">DIRECTORIO</a>
+          </li>
+        <?php endif ?>        
+        <?php endif ?>
+          <?php if ( $elementos->indicadores ): ?>
+          <li class="nav-item px-1 ">
+            <a class="nav-link texto-navegacion" href="#indicadores">INDICADORES</a>
           </li>
         <?php endif ?>
         </ul>
@@ -101,13 +101,6 @@
 <?php endif ?>
 <!-- /Noticias -->
 
-<!-- Indicadores -->
-<?php if ( $elementos->indicadores ): ?>
-<div id="indicadores" class="container">
-  <div id="mapa-indicadores" data-highcharts-chart="0" style="overflow: hidden;"></div>
-</div>
-<?php endif ?>
-<!-- /Indicadores -->
 
 <!-- Misión -->
 <div class="container py-2">
@@ -181,6 +174,14 @@
 </div>
 <?php endif ?>
 <!-- /Directorio -->
+
+<!-- Indicadores -->
+<?php if ( $elementos->indicadores ): ?>
+<div id="indicadores" class="container">
+  <div id="mapa-indicadores" data-highcharts-chart="0" style="overflow: hidden;"></div>
+</div>
+<?php endif ?>
+<!-- /Indicadores -->
 
 <script src="<?= base_url('sources/lib/Glide/dist/glide.js') ?>" type="text/javascript"></script>
 <link texto-navegacion rel="stylesheet" type="text/css" href="<?= base_url('sources/lib/Glide/dist/css/glide.core.min.css') ?>">
