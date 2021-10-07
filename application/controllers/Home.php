@@ -34,7 +34,7 @@ class Home extends CI_Controller {
             'elementos'       => (object) array(
                                     'nombre'       => $area->nombre,
                                     'imagenes'     => $area->json,
-                                    'noticias'     => $noticias,
+                                    'noticias'     => (object) $noticias,
                                     'indicadores'  => TRUE,
                                     'mision'       => $area->mision,
                                     'vision'       => $area->vision,
