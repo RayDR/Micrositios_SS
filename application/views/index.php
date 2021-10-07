@@ -156,7 +156,7 @@
     </div>
     <!-- Personas -->
     <?php $eDirectorio    = $elementos->directorio; ?>
-    <?php $sizeDirectorio = count($eDirectorio); ?>
+    <?php $sizeDirectorio = count($eDirectorio); print_r($eDirectorio); print_r('<br>'.$sizeDirectorio);?>
     <?php foreach( $eDirectorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
       <!-- Secretarío -->
