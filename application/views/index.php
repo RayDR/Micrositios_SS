@@ -155,7 +155,7 @@
       </div>
     </div>
     <!-- Personas -->
-    <?php foreach($elementos->directorio as $key => $directorio): ?>
+    <?php foreach($eDirectorio = $elementos->directorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
       <!-- Secretarío -->
       <div class="row justify-content-center">
@@ -184,7 +184,8 @@
         </div>
       </div>
       <?php endif; ?>
-      <?php if($key == count($elementos->directorio)): ?>
+
+      <?php if($key == count($eDirectorio)): ?>
       </div>
       <?php endif ?>
     <?php endforeach ?> 
