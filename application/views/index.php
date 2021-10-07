@@ -155,7 +155,7 @@
       </div>
     </div>
     <!-- Personas -->
-    <?php foreach( $elementos->directorio; as $key => $directorio): ?>
+    <?php foreach( $elementos->directorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
       <!-- Secretarío -->
       <div class="row justify-content-center">
