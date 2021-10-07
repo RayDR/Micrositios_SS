@@ -155,7 +155,7 @@
       </div>
     </div>
     <!-- Personas -->
-    <?php $eDirectorio    = $elementos->directorio; ?>
+    <?php $eDirectorio    = $elementos->directorio[0]; ?>
     <?php $sizeDirectorio = count($eDirectorio); print_r($eDirectorio); print_r('<br>'.$sizeDirectorio);?>
     <?php foreach( $eDirectorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
