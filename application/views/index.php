@@ -107,7 +107,7 @@
   <div class="row mt-3">
     <!-- Misión -->
   <?php if ( $elementos->mision ): ?>
-  <div class="col-12 col-md-6">    
+  <div id="mision" class="col-12 col-md-6">    
     <h5 class="text-primary text-uppercase mb-2">MISIÓN</h5>
     <hr class="bg-primary">
     <p><?= $elementos->mision ?></p>
@@ -117,7 +117,7 @@
 
   <!-- Visión -->
   <?php if ( $elementos->vision ): ?>
-  <div class="col-12 col-md-6">
+  <div id="vision" class="col-12 col-md-6">
     <h5 class="text-primary text-uppercase mb-2">VISIÓN</h5>
     <hr class="bg-primary">
     <p><?= $elementos->vision ?></p>
