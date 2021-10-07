@@ -110,37 +110,25 @@
 <!-- /Indicadores -->
 
 <!-- Misión -->
+<div class="container py-2">
+  <div class="row app-align-center">
 <?php if ( $elementos->mision ): ?>
-<div id="mision">
-  <div class="container py-2">
-    <div class="row app-align-center">
-        <div class="col-12 col-md-7 col-lg-6">
-          
-          <h5 class="text-primary text-uppercase mb-2">MISIÓN</h5>
-          <hr class="bg-primary">
-          <p><?= $elementos->mision ?></p>
-        </div>
-        <div id="imagen-mision" class="col-md-5 col-lg-6" style="min-height: 300px; border-radius: 15px;"></div>
-    </div>
+  <div class="col-12 col-md-6">
+    
+    <h5 class="text-primary text-uppercase mb-2">MISIÓN</h5>
+    <hr class="bg-primary">
+    <p><?= $elementos->mision ?></p>
   </div>
-</div>
 <?php endif ?>
 <!-- /Misión -->
 
 <!-- Visión -->
 <?php if ( $elementos->vision ): ?>
-<div id="vision">
-  <div class="container py-2">
-    <div class="row app-align-center">
-        <div id="imagen-vision" class="col-md-5 col-lg-6" style="min-height: 300px; border-radius: 15px;"></div>
-        <div class="col-12 col-md-7 col-lg-6">
-          <h5 class="text-primary text-uppercase mb-2">VISIÓN</h5>
-          <hr class="bg-primary">
-          <p><?= $elementos->vision ?></p>
-        </div>
-    </div>
+  <div class="col-12 col-12 col-md-6">
+    <h5 class="text-primary text-uppercase mb-2">VISIÓN</h5>
+    <hr class="bg-primary">
+    <p><?= $elementos->vision ?></p>
   </div>
-</div>
 <?php endif ?>
 <!-- /Visión -->
 
