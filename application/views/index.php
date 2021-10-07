@@ -111,7 +111,7 @@
 
 <!-- Misión -->
 <div class="container py-2">
-  <div class="row app-align-center">
+  <div class="row mt-3">
     <!-- Misión -->
   <?php if ( $elementos->mision ): ?>
   <div class="col-12 col-md-6">    
