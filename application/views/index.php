@@ -161,12 +161,12 @@
       <div class="row justify-content-center">
         <div class="col-6 col-md-4  d-flex align-items-stretch">
           <div class="card">
-            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($elementos->directorio->attachments): ?><?= array_key_exists('jsat_fname', $elementos->directorio->attachments)? ($elementos->directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: <?= ($key == 0)? 390: 310 ?>px; max-width: 400px;" />
             <div class="card-body my-3">
-              <h6 class="card-title text-primary font-weight-bold"><?= $elementos->directorio->fullname ?></h6>
+              <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
               <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
             </div>
-            <small><a href="tel:+52<?= $elementos->directorio->phone ?>"><?= $elementos->directorio->phone ?></a> - <?= $elementos->directorio->phone_ext ?></small>
+            <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
           </div>
         </div>
       </div>
