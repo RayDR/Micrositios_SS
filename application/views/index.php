@@ -149,7 +149,7 @@
 <div id="directorio" class="block block-secondary" style="padding: 3em">
   <div class="container text-center">
     <div class="row mb-5">
-      <div class="col-xs-10 col-sm-8 col-lg-6">
+      <div class="col-xs-10 col-sm-8 col-lg-6 text-center mx-auto">
         <h5 class="text-primary text-uppercase mb-2">DIRECTORIO</h5>
         <hr class="bg-primary">
       </div>
