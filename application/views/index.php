@@ -68,14 +68,14 @@
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
   <?php if ( is_object($elementos->noticias) ): ?>
-  <div id="noticias" class="my-0 py-0 container-fluid">
+  <div id="noticias" class="my-0 py-0 container">
     <div class="row app-align-center">
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <?php foreach ($elementos->noticias as $key => $noticia): ?>
             <li class="glide__slide text-center">
-              <img class="img-fluid" src="<?= $noticia->imagen ?>" alt="<?= $noticia->titulo ?>">
+              <img class="img-fluid" src="<?= ($noticia->imagen)? $noticia->imagen: '' ?>" alt="<?= $noticia->titulo ?>">
               <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
                 <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
                 <p class="text-white"><?= $noticia->resumen ?></p>

@@ -12,7 +12,7 @@ class Areas extends CI_Model {
    *  @param   boolean  $modoRetorno
    **/
 
-   public function get_area($areaID, $filtros = NULL, $ordenadores = NULL, $modoRetorno = TRUE){
+   public function get_area($areaID, $filtros = NULL, $ordenadores = NULL){
       // Opciones de filtrado adicional
       if( is_array($filtros) ){
          foreach ($filtros as $campo => $filtro) {
@@ -33,12 +33,17 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('shortname', $areaID);
-      $query = $this->db->get('microsites.areas');
-      if ( $modoRetorno )
-         return $query->row();
-      else
-         return $query->row_array();
+      $query      = $this->db->get('microsites.areas');
+      $noticias   = $query->result();
+      
+      if ( $noticias ){
+         // Obtener imagenes de attachments si se obtuvieron resultados
+         foreach ($noticias as $key => $elemento) {
+            $noticias[$key]->attachments = $this->get_attachment('178', $elemento->id);
+         }
+      }
 
+      return $noticias;
    }
 
    /**
@@ -129,9 +134,9 @@ class Areas extends CI_Model {
    /**
     * Función para obtener imagenes de attachments
     **/
-   private function get_attachment($modulo, $idPersona){
+   private function get_attachment($modulo, $idComponente){
       $this->db->where('jsat_module', $modulo);
-      $this->db->where('jsat_recid', $idPersona);
+      $this->db->where('jsat_recid', $idComponente);
 
       return $this->db->get('webcore.jsattachments')->row();
    }
