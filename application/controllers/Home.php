@@ -21,28 +21,31 @@ class Home extends CI_Controller {
       $this->load->model('areas');
       $cvArea  = ($cvArea)? $cvArea : 'tecnologias';
       $cvArea  = ($cvArea === 'index')? 'tecnologias' : $cvArea;
-      if ( $cvArea != 'tecnologias' && !preg_match('/^192.168.4./', $_SERVER['REMOTE_ADDR']) ){
-         $this->load->view('template/maintenance');
-         return;
-      }
+
+      if ( $cvArea != 'tecnologias' && !preg_match('/^192.168.4./', $_SERVER['REMOTE_ADDR']) )
+         return $this->load->view('template/maintenance');
 
       $area    = $this->areas->get_area($cvArea);
-      $noticias= $this->areas->get_noticias($area->id);
 
-      $directorio = $this->areas->get_directorio($area->id);
+      if ( !$area )
+         return $this->load->view('template/maintenance');
+
+      $noticias= $this->areas->get_noticias($area[0]->id);
+
+      $directorio = $this->areas->get_directorio($area[0]->id);
 
       if( $area ){
          $data=array(
-            'title'           => "{$area->nombre} | " . SISTEMA,
+            'title'           => "{$area[0]->nombre} | " . SISTEMA,
             'template'        => $this->template,
             'view'            => 'index',
             'elementos'       => (object) array(
-                                    'nombre'       => $area->nombre,
-                                    'imagenes'     => $area->json,
+                                    'nombre'       => $area[0]->nombre,
+                                    'imagenes'     => $area[0]->json,
                                     'noticias'     => (object) $noticias,
                                     'indicadores'  => TRUE,
-                                    'mision'       => $area->mision,
-                                    'vision'       => $area->vision,
+                                    'mision'       => $area[0]->mision,
+                                    'vision'       => $area[0]->vision,
                                     'directorio'   => (object) $directorio
                                  ),
          );

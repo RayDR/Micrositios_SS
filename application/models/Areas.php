@@ -6,13 +6,13 @@ class Areas extends CI_Model {
    /**
    *  Función que obtiene un área con base a su ID para retornar sus datos
    *  @function   get_estudiante
-   *  @param   integer  $areaID
+   *  @param   integer  $cveArea
    *  @param   array    $filtros
    *  @param   array    $ordenadores
    *  @param   boolean  $modoRetorno
    **/
 
-   public function get_area($areaID, $filtros = NULL, $ordenadores = NULL){
+   public function get_area($cveArea, $filtros = NULL, $ordenadores = NULL){
       // Opciones de filtrado adicional
       if( is_array($filtros) ){
          foreach ($filtros as $campo => $filtro) {
@@ -32,7 +32,7 @@ class Areas extends CI_Model {
          }
       }
 
-      $this->db->where('shortname', $areaID);
+      $this->db->where('shortname', $cveArea);
       $query      = $this->db->get('microsites.areas');
       $noticias   = $query->result();
       
