@@ -144,7 +144,7 @@
       <div class="row justify-content-center mb-3">
         <div class="col-10 col-sm-8 col-md-6">
           <div class="card">
-            <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/areas/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyYmVhbiI6IntcImxhc3RhY2Nlc3NcIjpudWxsLFwiaXNhZG1pblwiOmZhbHNlLFwicHJlZFwiOi0xLFwiaXNyb2xlXCI6ZmFsc2UsXCJpc2FjdGl2ZVwiOnRydWUsXCJuYW1lXCI6XCJVU1VBUklPIFBBUkEgQ09OU1VMVEFSIFJFUE9SVEVTXCIsXCJob3N0XCI6XCJsb2NhbGhvc3RcIixcImFsaWFzXCI6XCJ1c2VycmVwb3J0c1wiLFwiaWRcIjozMDg0MSxcInRhZ1wiOlwiXCIsXCJwYXJhbXNcIjp7fSxcImVtYWlsXCI6XCJjb3JyZW9AbWFpbC5jb21cIn0ifQ.oAxid0Ipz2WIPtU9ml8Q8j1qJR2O-tfftVQUe9l8ahujDHN3JKSD3kgY_W4jr8IrjYtc38gwv-MB5Hc5btmrQw': '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
             <div class="card-body my-3">
               <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
               <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
@@ -158,7 +158,7 @@
       <?php else: ?>
       <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <div class="card">
-          <img class="card-img p-0" src="https://webcore.setab.gob.mx/static/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname): '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 300px;" />
+          <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/areas/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyYmVhbiI6IntcImxhc3RhY2Nlc3NcIjpudWxsLFwiaXNhZG1pblwiOmZhbHNlLFwicHJlZFwiOi0xLFwiaXNyb2xlXCI6ZmFsc2UsXCJpc2FjdGl2ZVwiOnRydWUsXCJuYW1lXCI6XCJVU1VBUklPIFBBUkEgQ09OU1VMVEFSIFJFUE9SVEVTXCIsXCJob3N0XCI6XCJsb2NhbGhvc3RcIixcImFsaWFzXCI6XCJ1c2VycmVwb3J0c1wiLFwiaWRcIjozMDg0MSxcInRhZ1wiOlwiXCIsXCJwYXJhbXNcIjp7fSxcImVtYWlsXCI6XCJjb3JyZW9AbWFpbC5jb21cIn0ifQ.oAxid0Ipz2WIPtU9ml8Q8j1qJR2O-tfftVQUe9l8ahujDHN3JKSD3kgY_W4jr8IrjYtc38gwv-MB5Hc5btmrQw': '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 300px;" />
           <div class="card-body my-3">
             <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
             <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
