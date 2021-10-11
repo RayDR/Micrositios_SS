@@ -21,6 +21,11 @@ class Home extends CI_Controller {
       $this->load->model('areas');
       $cvArea  = ($cvArea)? $cvArea : 'tecnologias';
       $cvArea  = ($cvArea === 'index')? 'tecnologias' : $cvArea;
+      if ( $cvArea != 'tecnologias' ){
+         $this->load->view('template/maintenance');
+         return;
+      }
+
       $area    = $this->areas->get_area($cvArea);
       $noticias= $this->areas->get_noticias($area->id);
 
