@@ -121,7 +121,7 @@ class Areas extends CI_Model {
          }
       }
       $this->db->or_where('areaid', 0);
-      $this->db->or_where('areaid', 3);
+      $this->db->or_where('areaid', $areaID);
 
       $this->db->order_by('id', 'asc');
       
