@@ -39,7 +39,7 @@ class Areas extends CI_Model {
       if ( $area ){
          // Obtener imagenes de attachments si se obtuvieron resultados
          $moduleID = $this->get_module_id($this->get_table_schema(AREAS));
-         $area->attachments = $this->get_attachment($moduleID, $area->id);
+         $area->attachments = $this->get_attachments($moduleID, $area->id);
       }
 
       return $area;
@@ -146,6 +146,13 @@ class Areas extends CI_Model {
       $this->db->where('jsat_recid', $idComponente);
 
       return $this->db->get($this->get_table_schema(ATTACHMENTS, "webcore"))->row();
+   }
+
+   private function get_attachments($modulo, $idComponente){
+      $this->db->where('jsat_module', $modulo);
+      $this->db->where('jsat_recid', $idComponente);
+
+      return $this->db->get($this->get_table_schema(ATTACHMENTS, "webcore"))->result();
    }
 
    // Regresa el id segun el nombre de un módulo

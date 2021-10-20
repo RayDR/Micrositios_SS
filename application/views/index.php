@@ -15,53 +15,53 @@
 
 <div class="stage" id="stage"></div>
 
-<div id="imagen-principal" class="block block-inverse block-fill-height app-header">
-  <div class="container py-4 fixed-top app-navbar">
-    <nav class="navbar navbar-transparent navbar-padded navbar-toggleable-sm">
-      <a class="navbar-brand mr-auto" href="<?= base_url() ?>">
-        <img src="<?= base_url('sources/img/SETAB_DORADO.png') ?>" alt="SETAB" class="img-fluid" style="max-height: 50px;">
-      </a>
-
-      <div class="hidden-sm-down text-uppercase">
-        <ul class="navbar-nav">
-          <?php if ( $elementos->noticias ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#noticias">NOTICIAS</a>
-          </li>
-          <?php endif ?>
-          <?php if ( $elementos->mision ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#mision">MISIÓN</a>
-          </li>       
-          <?php endif ?>
-          <?php if ( $elementos->vision ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#vision">VISIÓN</a>
-          </li>
-          <?php endif ?>
-          <?php if ( $elementos->directorio ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#directorio">DIRECTORIO</a>
-          </li>
-          <?php endif ?> 
-          <?php if ( $elementos->indicadores ): ?>
-          <li class="nav-item px-1 ">
-            <a class="nav-link texto-navegacion" href="#indicadores">INDICADORES</a>
-          </li>
-          <?php endif ?>
-        </ul>
-      </div>
-    </nav>
-  </div>
-
-  <div class="block-xs-middle pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-lg-6">
-          <h1 class="texto-encabezado font-weight-bold"><?= $elementos->nombre ?></h1>
-        </div>
-      </div>
+<div class="container fixed-top app-navbar" style="padding: 0;">
+  <nav class="navbar navbar-transparent navbar-padded navbar-toggleable-sm">
+    <a class="navbar-brand mr-auto" href="<?= base_url() ?>">
+      <img src="<?= base_url('sources/img/SETAB_DORADO.png') ?>" alt="SETAB" class="img-fluid" style="max-height: 50px;">
+    </a>
+    <div class="hidden-sm-down text-uppercase">
+      <ul class="navbar-nav">
+        <?php if ( $elementos->noticias ): ?>
+        <li class="nav-item px-1 ">
+          <a class="nav-link texto-navegacion" href="#noticias">NOTICIAS</a>
+        </li>
+        <?php endif ?>
+        <?php if ( $elementos->mision ): ?>
+        <li class="nav-item px-1 ">
+          <a class="nav-link texto-navegacion" href="#mision">MISIÓN</a>
+        </li>       
+        <?php endif ?>
+        <?php if ( $elementos->vision ): ?>
+        <li class="nav-item px-1 ">
+          <a class="nav-link texto-navegacion" href="#vision">VISIÓN</a>
+        </li>
+        <?php endif ?>
+        <?php if ( $elementos->directorio ): ?>
+        <li class="nav-item px-1 ">
+          <a class="nav-link texto-navegacion" href="#directorio">DIRECTORIO</a>
+        </li>
+        <?php endif ?> 
+        <?php if ( $elementos->indicadores ): ?>
+        <li class="nav-item px-1 ">
+          <a class="nav-link texto-navegacion" href="#indicadores">INDICADORES</a>
+        </li>
+        <?php endif ?>
+      </ul>
     </div>
+  </nav>
+</div>
+
+<div id="main-galery" class="carousel slide block-inverse app-header" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <?php if( $elementos->imagenes): ?>
+      <?php foreach ($elementos->imagenes as $key => $imagen): ?>
+      <div class="carousel-item <?= ($key == 0)? 'active': '' ?>">
+        <img src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= AREAS ?>/<?php if ($imagen): ?><?= array_key_exists('jsat_fname', $imagen)? ($imagen->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/startup-3.jpg') ?>'" class="img-fluid w-100" style="max-height: 100vh;" alt="<?= $elementos->nombre ?>">
+        <h1 class="texto-encabezado font-weight-bold" style="position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%);"><?= $elementos->nombre ?></h1>
+      </div>
+      <?php endforeach ?>
+    <?php endif ?>
   </div>
 </div>
 
@@ -74,7 +74,7 @@
           <ul class="glide__slides">
             <?php foreach ($elementos->noticias as $key => $noticia): ?>
             <li class="glide__slide text-center">
-              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/notes/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>" style="max-height: 300px;">
+              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>" style="max-height: 300px;">
               <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
                 <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
                 <p class="text-white"><?= $noticia->resumen ?></p>
@@ -90,6 +90,27 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 <?php else: ?>
 
@@ -142,7 +163,7 @@
       <div class="row justify-content-center mb-5">
         <div class="col-10 col-sm-8 col-md-6">
           <div class="card" style="border-width: 5px;">
-            <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
             <div class="card-body my-3">
               <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
               <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
