@@ -67,19 +67,31 @@
 
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
-  <div id="noticias" class="mt-1 mb-0 py-0 container">
+  <div id="noticias" class="mb-0 py-0 block-inverse">
     <div class="row app-align-center">
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <?php foreach ($elementos->noticias as $key => $noticia): ?>
-            <li class="glide__slide text-center">
-              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>" style="max-height: 300px;">
-              <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
-                <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
-                <p class="text-white"><?= $noticia->resumen ?></p>
-              </div>
-            </li>
+              <?php if ( $key == 0 || $key % 3 == 0 ): ?>
+                <li class="glide__slide text-center m-auto">
+                  <?php if ( $key % 3 == 0 ): ?>
+                  <div class="row container m-auto">
+                  <?php endif ?>
+              <?php endif ?>
+                <div class="col-10 col-md-4 mx-auto mb-1">
+                  <div class="card my-1" style="max-height: 400px">
+                    <img class="card-img" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
+                    <div class="card-body px-1" style="background-color: rgba(33, 33, 33, 0.7);">
+                      <h4 class="display-7 text-white mb-1"><?= $noticia->titulo ?></h4>
+                      <p class="d-none d-lg-block small text-white"><?= $noticia->resumen ?></p>
+                    </div>
+                  </div>
+                </div>
+              <?php if ( ($key+1) % 3 == 0 || $key == count($elementos->noticias) ): ?>
+                  </div>
+                </li>
+              <?php endif ?>
             <?php endforeach ?>
           </ul>
         </div>
@@ -90,27 +102,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
 <?php else: ?>
 
