@@ -86,7 +86,7 @@ class Areas extends CI_Model {
          foreach ($noticias as $key => $noticia) {
             $noticia->attachment = $this->get_attachment($moduleID, $noticia->id);
          }
-         return $noticias;
+         return (object)$noticias;
       }
 
       return [];
