@@ -33,18 +33,16 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('shortname', $cveArea);
-      $query      = $this->db->get(AREAS);
-      $areas   = $query->result();
+      $query   = $this->db->get($this->get_table_schema(AREAS));
+      $area    = $query->row();
       
-      if ( $areas ){
+      if ( $area ){
          // Obtener imagenes de attachments si se obtuvieron resultados
-         $moduleID = $this->get_module_id(AREAS);
-         foreach ($areas as $key => $area) {
-            $areas[$key]->attachments = $this->get_attachment($moduleID, $area->id);
-         }
+         $moduleID = $this->get_module_id($this->get_table_schema(AREAS));
+         $area->attachments = $this->get_attachment($moduleID, $area->id);
       }
 
-      return $areas;
+      return $area;
    }
 
    /**
@@ -77,16 +75,16 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('areaid', $areaID);
-      $query = $this->db->get(NOTICIAS);
+      $query = $this->db->get($this->get_table_schema(NOTICIAS));
 
       // Obtener imagenes de noticias
       if ( $query->num_rows() > 0 ){
          $noticias = $query->result();
-         $moduleID = $this->get_module_id(NOTICIAS);
+         $moduleID = $this->get_module_id($this->get_table_schema(NOTICIAS));
          foreach ($noticias as $key => $noticia) {
             $noticia->attachment = $this->get_attachment($moduleID, $noticia->id);
          }
-         return (object)$noticias;
+         return $noticias;
       }
 
       return [];
@@ -120,43 +118,51 @@ class Areas extends CI_Model {
                $this->db->where($orden);
          }
       }
-      $this->db->or_where('areaid', 0);
+      $this->db->where('areaid', 0);
       $this->db->or_where('areaid', $areaID);
 
-      $this->db->order_by('id', 'asc');
+      $this->db->order_by('orden', 'asc');
       
-      $query = $this->db->get(DIRECTORIO);
-      $datos = $query->result();
+      $query      = $this->db->get($this->get_table_schema(DIRECTORIO));
+      $directorio = $query->result();
       
       if ( $query->num_rows() > 0 ){
          // Obtener imagenes de attachments si se obtuvieron resultados
-         $moduleID = $this->get_module_id(DIRECTORIO);
-         foreach ($datos as $key => $elemento) {
-            $datos[$key]->attachments = $this->get_attachment($moduleID, $elemento->id);
+         $moduleID = $this->get_module_id($this->get_table_schema(DIRECTORIO));
+         foreach ($directorio as $key => $elemento) {
+            $directorio[$key]->attachments = $this->get_attachment($moduleID, $elemento->id);
          }
       }
-
-      return $datos;
-
+      return $directorio;
    }
 
    /**
     * Función para obtener imagenes de attachments
+    * @param modulo        - ID del módulo
+    * @param idComponente  - ID del objeto guardado
     **/
    private function get_attachment($modulo, $idComponente){
       $this->db->where('jsat_module', $modulo);
       $this->db->where('jsat_recid', $idComponente);
 
-      return $this->db->get(ATTACHMENTS)->row();
+      return $this->db->get($this->get_table_schema(ATTACHMENTS, "webcore"))->row();
    }
 
+   // Regresa el id segun el nombre de un módulo
    private function get_module_id($module, $like = false){
       if ( $like )
          $this->db->like('jsmo_module', $module, 'BOTH');
       else
          $this->db->where('jsmo_module', $module);
-      $query = $this->db->get(MODULES);
+
+      $query = $this->db->get($this->get_table_schema(MODULES, "webcore"));
+
       return $query->row('id');
+   }
+
+   // Regresa cadena armada con esquema y tabla
+   private function get_table_schema($table, $schema = ESQUEMA){
+      return $schema . "." . $table;
    }
 
 }

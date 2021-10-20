@@ -67,14 +67,14 @@
 
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
-  <div id="noticias" class="my-0 py-0 container">
+  <div id="noticias" class="mt-1 mb-0 py-0 container">
     <div class="row app-align-center">
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <?php foreach ($noticias as $key => $noticia): ?>
+            <?php foreach ($elementos->noticias as $key => $noticia): ?>
             <li class="glide__slide text-center">
-              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($noticia->attachments): ?><?= array_key_exists('jsat_fname', $noticia->attachments)? ($noticia->attachments->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>">
+              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/notes/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>" style="max-height: 300px;">
               <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
                 <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
                 <p class="text-white"><?= $noticia->resumen ?></p>
@@ -126,7 +126,7 @@
 </div>
 
 <!-- Directorio -->
-<?php if ( is_object($elementos->directorio) ): ?>
+<?php if ( $elementos->directorio ): ?>
 <div id="directorio" class="block block-secondary" style="padding: 3em">
   <div class="container text-center">
     <div class="row mb-2">
@@ -139,7 +139,7 @@
     <?php foreach( $elementos->directorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
       <!-- Secretarío -->
-      <div class="row justify-content-center mb-3">
+      <div class="row justify-content-center mb-5">
         <div class="col-10 col-sm-8 col-md-6">
           <div class="card" style="border-width: 5px;">
             <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />

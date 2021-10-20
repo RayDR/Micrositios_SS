@@ -22,31 +22,29 @@ class Home extends CI_Controller {
       $cvArea  = ($cvArea)? $cvArea : 'tecnologias';
       $cvArea  = ($cvArea === 'index')? 'tecnologias' : $cvArea;
 
-      if ( $cvArea != 'tecnologias' && !preg_match('/^192.168.4./', $_SERVER['REMOTE_ADDR']) )
-         return $this->load->view('template/maintenance');
 
       $area    = $this->areas->get_area($cvArea);
 
       if ( !$area )
          return $this->load->view('template/maintenance');
 
-      $noticias = $this->areas->get_noticias($area[0]->id);
+      $noticias = $this->areas->get_noticias($area->id);
 
-      $directorio = $this->areas->get_directorio($area[0]->id);
+      $directorio = $this->areas->get_directorio($area->id);
 
       if( $area ){
          $data=array(
-            'title'           => "{$area[0]->nombre} | " . SISTEMA,
+            'title'           => "{$area->nombre} | " . SISTEMA,
             'template'        => $this->template,
             'view'            => 'index',
             'elementos'       => (object) array(
-                                    'nombre'       => $area[0]->nombre,
-                                    'imagenes'     => $area[0]->json,
+                                    'nombre'       => $area->nombre,
+                                    'imagenes'     => $area->json,
                                     'noticias'     => $noticias,
                                     'indicadores'  => TRUE,
-                                    'mision'       => $area[0]->mision,
-                                    'vision'       => $area[0]->vision,
-                                    'directorio'   => (object) $directorio
+                                    'mision'       => $area->mision,
+                                    'vision'       => $area->vision,
+                                    'directorio'   => $directorio
                                  ),
          );
          $this->load->view( $this->contenido, $data );
