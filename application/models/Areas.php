@@ -33,13 +33,14 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('shortname', $cveArea);
-      $query      = $this->db->get('microsites.areas');
+      $query      = $this->db->get(AREAS);
       $areas   = $query->result();
       
       if ( $areas ){
          // Obtener imagenes de attachments si se obtuvieron resultados
+         $moduleID = $this->get_module_id(AREAS);
          foreach ($areas as $key => $area) {
-            $areas[$key]->attachments = $this->get_attachment('178', $area->id);
+            $areas[$key]->attachments = $this->get_attachment($moduleID, $area->id);
          }
       }
 
@@ -76,13 +77,14 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('areaid', $areaID);
-      $query = $this->db->get('microsites.notes');
+      $query = $this->db->get(NOTICIAS);
 
       // Obtener imagenes de noticias
       if ( $query->num_rows() > 0 ){
          $noticias = $query->result();
+         $moduleID = $this->get_module_id(NOTICIAS);
          foreach ($noticias as $key => $noticia) {
-            $noticia->attachment = $this->get_attachment('178', $noticia->id);
+            $noticia->attachment = $this->get_attachment($moduleID, $noticia->id);
          }
          return $noticias;
       }
@@ -123,13 +125,14 @@ class Areas extends CI_Model {
 
       $this->db->order_by('id', 'asc');
       
-      $query = $this->db->get('microsites.persons');
+      $query = $this->db->get(DIRECTORIO);
       $datos = $query->result();
       
       if ( $query->num_rows() > 0 ){
          // Obtener imagenes de attachments si se obtuvieron resultados
+         $moduleID = $this->get_module_id(DIRECTORIO);
          foreach ($datos as $key => $elemento) {
-            $datos[$key]->attachments = $this->get_attachment('179', $elemento->id);
+            $datos[$key]->attachments = $this->get_attachment($moduleID, $elemento->id);
          }
       }
 
@@ -144,7 +147,16 @@ class Areas extends CI_Model {
       $this->db->where('jsat_module', $modulo);
       $this->db->where('jsat_recid', $idComponente);
 
-      return $this->db->get('webcore.jsattachments')->row();
+      return $this->db->get(ATTACHMENTS)->row();
+   }
+
+   private function get_module_id($module, $like = false){
+      if ( $like )
+         $this->db->like('jsmo_module', $module, 'BOTH');
+      else
+         $this->db->where('jsmo_module', $module);
+      $query = $this->db->get(MODULES);
+      return $query->row('id');
    }
 
 }

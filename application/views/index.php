@@ -67,7 +67,6 @@
 
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
-  <?php print_r($elementos->noticias[0]); ?>
   <div id="noticias" class="my-0 py-0 container">
     <div class="row app-align-center">
       <div class="glide">
@@ -75,7 +74,7 @@
           <ul class="glide__slides">
             <?php foreach ($noticias as $key => $noticia): ?>
             <li class="glide__slide text-center">
-              <img class="img-fluid" src="<?= ($noticia->imagen)? $noticia->imagen: '' ?>" alt="<?= $noticia->titulo ?>">
+              <img class="img-fluid" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($noticia->attachments): ?><?= array_key_exists('jsat_fname', $noticia->attachments)? ($noticia->attachments->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" alt="<?= $noticia->titulo ?>">
               <div class="text-primary" style="background-color: rgba(33, 33, 33, 0.7);">
                 <h3 class="text-white mb-0"><?= $noticia->titulo ?></h3>
                 <p class="text-white"><?= $noticia->resumen ?></p>
@@ -143,7 +142,7 @@
       <div class="row justify-content-center mb-3">
         <div class="col-10 col-sm-8 col-md-6">
           <div class="card" style="border-width: 5px;">
-            <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyYmVhbiI6IntcImxhc3RhY2Nlc3NcIjpudWxsLFwiaXNhZG1pblwiOmZhbHNlLFwicHJlZFwiOi0xLFwiaXNyb2xlXCI6ZmFsc2UsXCJpc2FjdGl2ZVwiOnRydWUsXCJuYW1lXCI6XCJVU1VBUklPIFBBUkEgQ09OU1VMVEFSIFJFUE9SVEVTXCIsXCJob3N0XCI6XCJsb2NhbGhvc3RcIixcImFsaWFzXCI6XCJ1c2VycmVwb3J0c1wiLFwiaWRcIjozMDg0MSxcInRhZ1wiOlwiXCIsXCJwYXJhbXNcIjp7fSxcImVtYWlsXCI6XCJjb3JyZW9AbWFpbC5jb21cIn0ifQ.oAxid0Ipz2WIPtU9ml8Q8j1qJR2O-tfftVQUe9l8ahujDHN3JKSD3kgY_W4jr8IrjYtc38gwv-MB5Hc5btmrQw': '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+            <img class="card-img p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
             <div class="card-body my-3">
               <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
               <h6 class="font-weight-bold"><?= $directorio->job_title ?></h6>
@@ -156,8 +155,8 @@
       <!-- Secretarío -->
       <?php else: ?>
       <div class="d-flex justify-content-center justify-content-md-stretch col-8 col-sm-6 col-md-4 col-lg-3 mb-2">
-        <div class="card" style="border-width: 2px;">
-          <img class="card-img rounded-circle p-0" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyYmVhbiI6IntcImxhc3RhY2Nlc3NcIjpudWxsLFwiaXNhZG1pblwiOmZhbHNlLFwicHJlZFwiOi0xLFwiaXNyb2xlXCI6ZmFsc2UsXCJpc2FjdGl2ZVwiOnRydWUsXCJuYW1lXCI6XCJVU1VBUklPIFBBUkEgQ09OU1VMVEFSIFJFUE9SVEVTXCIsXCJob3N0XCI6XCJsb2NhbGhvc3RcIixcImFsaWFzXCI6XCJ1c2VycmVwb3J0c1wiLFwiaWRcIjozMDg0MSxcInRhZ1wiOlwiXCIsXCJwYXJhbXNcIjp7fSxcImVtYWlsXCI6XCJjb3JyZW9AbWFpbC5jb21cIn0ifQ.oAxid0Ipz2WIPtU9ml8Q8j1qJR2O-tfftVQUe9l8ahujDHN3JKSD3kgY_W4jr8IrjYtc38gwv-MB5Hc5btmrQw': '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 220px;" />
+        <div class="card" style="border-width: 0px;">
+          <img class="card-img rounded-circle px-2 px-sm-3 px-lg-2 px-xl-3" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 220px;" />
           <div class="card-body my-3">
             <div class="px-1">
               <h6 class="card-title text-primary font-weight-bold"><?= $directorio->fullname ?></h6>
