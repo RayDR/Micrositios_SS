@@ -30,7 +30,7 @@ class Home extends CI_Controller {
       if ( !$area )
          return $this->load->view('template/maintenance');
 
-      $noticias= $this->areas->get_noticias($area[0]->id);
+      $noticias = $this->areas->get_noticias($area[0]->id);
 
       $directorio = $this->areas->get_directorio($area[0]->id);
 
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
             'elementos'       => (object) array(
                                     'nombre'       => $area[0]->nombre,
                                     'imagenes'     => $area[0]->json,
-                                    'noticias'     => (object) $noticias,
+                                    'noticias'     => $noticias,
                                     'indicadores'  => TRUE,
                                     'mision'       => $area[0]->mision,
                                     'vision'       => $area[0]->vision,

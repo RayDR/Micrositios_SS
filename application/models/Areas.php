@@ -34,16 +34,16 @@ class Areas extends CI_Model {
 
       $this->db->where('shortname', $cveArea);
       $query      = $this->db->get('microsites.areas');
-      $noticias   = $query->result();
+      $areas   = $query->result();
       
-      if ( $noticias ){
+      if ( $areas ){
          // Obtener imagenes de attachments si se obtuvieron resultados
-         foreach ($noticias as $key => $elemento) {
-            $noticias[$key]->attachments = $this->get_attachment('178', $elemento->id);
+         foreach ($areas as $key => $area) {
+            $areas[$key]->attachments = $this->get_attachment('178', $area->id);
          }
       }
 
-      return $noticias;
+      return $areas;
    }
 
    /**
@@ -77,11 +77,17 @@ class Areas extends CI_Model {
 
       $this->db->where('areaid', $areaID);
       $query = $this->db->get('microsites.notes');
-      if ( $modoRetorno )
-         return $query->result();
-      else
-         return $query->result_array();
 
+      // Obtener imagenes de noticias
+      if ( $query->num_rows() > 0 ){
+         $noticias = $query->result();
+         foreach ($noticias as $key => $noticia) {
+            $noticia->attachment = $this->get_attachment('178', $noticia->id);
+         }
+         return $noticias;
+      }
+
+      return [];
    }
 
    /**
@@ -113,7 +119,7 @@ class Areas extends CI_Model {
          }
       }
       $this->db->or_where('areaid', 0);
-      $this->db->or_where('areaid', $areaID);
+      $this->db->or_where('areaid', 3);
 
       $this->db->order_by('id', 'asc');
       
