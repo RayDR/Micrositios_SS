@@ -9,6 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define('LOGO', '');
 define('SISTEMA', 'MICROSITIOS | SETAB');
 
+// Configurador
+
+defined('LIMITE_NOTICIAS') 	OR define('LIMITE_NOTICIAS', 9);
+
 // Definición de Nombres de Tablas Webcore
 defined('ESQUEMA') 		OR define('ESQUEMA', "microsites");
 

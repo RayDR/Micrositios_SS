@@ -17,7 +17,7 @@
 
 <div class="container fixed-top app-navbar" style="padding: 0;">
   <nav class="navbar navbar-transparent navbar-padded navbar-toggleable-sm">
-    <a class="navbar-brand mr-auto" href="<?= base_url() ?>">
+    <a class="navbar-brand mr-auto" href="https://tabasco.gob.mx/educacion">
       <img src="<?= base_url('sources/img/SETAB_DORADO.png') ?>" alt="SETAB" class="img-fluid" style="max-height: 50px;">
     </a>
     <div class="hidden-sm-down text-uppercase">
@@ -52,12 +52,12 @@
   </nav>
 </div>
 
-<div id="main-galery" class="carousel slide block-inverse app-header" data-bs-ride="carousel">
+<div id="main-galery" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <?php if( $elementos->imagenes): ?>
+    <?php if( $elementos->imagenes ): ?>
       <?php foreach ($elementos->imagenes as $key => $imagen): ?>
       <div class="carousel-item <?= ($key == 0)? 'active': '' ?>">
-        <img src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= AREAS ?>/<?php if ($imagen): ?><?= array_key_exists('jsat_fname', $imagen)? ($imagen->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/startup-3.jpg') ?>'" class="img-fluid w-100" style="max-height: 100vh;" alt="<?= $elementos->nombre ?>">
+        <img src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= AREAS ?>/<?= array_key_exists('jsat_fname', $imagen)? ($imagen->jsat_fname) . '?token=' . TOKEN: '' ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/startup-3.jpg') ?>'" class="img-fluid w-100" style="max-height: 100vh;" alt="<?= $elementos->nombre ?>">
         <h1 class="texto-encabezado font-weight-bold" style="position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%);"><?= $elementos->nombre ?></h1>
       </div>
       <?php endforeach ?>
@@ -67,7 +67,7 @@
 
 <!-- Noticias -->
 <?php if( $elementos->noticias ): ?>
-  <div id="noticias" class="mb-0 py-0 block-inverse">
+  <div id="noticias" class="mb-0 py-0 container-fluid">
     <div class="row app-align-center">
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
@@ -82,9 +82,9 @@
                 <div class="col-10 col-md-4 mx-auto mb-1">
                   <div class="card my-1" style="max-height: 400px">
                     <img class="card-img" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
-                    <div class="card-body px-1" style="background-color: rgba(33, 33, 33, 0.7);">
-                      <h4 class="display-7 text-white mb-1"><?= $noticia->titulo ?></h4>
-                      <p class="d-none d-lg-block small text-white"><?= $noticia->resumen ?></p>
+                    <div class="card-body px-1" >
+                      <h4 class="h5 h4-lg text-dark mb-1 text-primary"><?= $noticia->titulo ?></h4>
+                      <p class="d-none d-lg-block small text-dark"><?= $noticia->resumen ?></p>
                     </div>
                   </div>
                 </div>

@@ -75,7 +75,7 @@ class Areas extends CI_Model {
       }
 
       $this->db->where('areaid', $areaID);
-      $query = $this->db->get($this->get_table_schema(NOTICIAS));
+      $query = $this->db->get($this->get_table_schema(NOTICIAS), LIMITE_NOTICIAS);
 
       // Obtener imagenes de noticias
       if ( $query->num_rows() > 0 ){
