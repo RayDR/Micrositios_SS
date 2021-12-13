@@ -1,7 +1,3 @@
-<script type="text/javascript">
-  var jsonNoticias = <?= $elementos->imagenes ?>;
-</script>
-
 <?php $this->load->view('template/menu', (object)['elementos' => $elementos]); ?>
 
 <div id="main-galery" class="carousel slide bg-filter" data-ride="carousel">
@@ -20,7 +16,7 @@
 </div>
 
 <!-- Noticias -->
-<?php if( $elementos->noticias ): ?>
+<?php if( false ): ?>
   <div id="noticias" class="mb-0 py-0 container-fluid">
     <div class="row app-align-center">
       <div class="glide">
@@ -107,8 +103,8 @@
       <!-- SECRETARIO -->
       <div class="row ">
         <div class="col-11 col-md-6 col-lg-5 col-xl-4 mx-auto">
-          <div class="card border-dark" style="border-radius: 10px;">
-            <img class="card-img-top" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 250px; border-radius: 10px;" />
+          <div class="card border border-4 borde-primario" style="border-radius: 10px;">
+            <img class="card-img-top border border-4 borde-primario" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px; border-radius: 10px;" />
             <div class="card-body py-2 my-3">
               <h6 class="card-title"><?= $directorio->fullname ?></h6>
               <h6 class="card-text font-weight-bold"><?= $directorio->job_title ?></h6>
@@ -121,9 +117,9 @@
       <!-- SECRETARIO -->
       <?php else: ?>
       <div class="col-6 col-md-4 col-lg-3 mx-auto">
-        <div class="card p-2 border-light">
-          <img class="card-img rounded-circle px-1" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 250px;" />
-          <div class="card-body py-2 my-3">
+        <div class="card p-2">
+          <img class="card-img rounded-circle border border-4 borde-secundario" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 200px;" />
+          <div class="card-body py-2 mb-3">
             <h6 class="card-title"><?= $directorio->fullname ?></h6>
             <h6 class="card-text font-weight-bold"><?= $directorio->job_title ?></h6>
 
@@ -160,6 +156,5 @@
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function () {
-    console.log("¡Estamos en vivo!");
   });
 </script>

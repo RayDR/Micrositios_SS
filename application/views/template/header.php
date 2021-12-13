@@ -105,6 +105,14 @@
 				color: white;
 				font-weight: bold;
 			}
+
+			.borde-primario {
+				border-color: var(--primario-setab) !important;
+			}
+
+			.borde-secundario {
+				border-color: var(--primario-setab) !important;
+			}
 		</style>
 
 	</head>
