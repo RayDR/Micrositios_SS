@@ -93,7 +93,7 @@
 
 <!-- Directorio -->
 <?php if ( $elementos->directorio ): ?>
-<div id="directorio" class="block block-secondary" style="padding: 3em">
+<div id="directorio" class="block block-secondary container container-lg-fluid" style="padding: 3em">
   <div class="container text-center">
     <div class="row mb-2">
       <div class="col-xs-10 col-sm-8 col-lg-6 text-center mx-auto">
