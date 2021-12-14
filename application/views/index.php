@@ -69,7 +69,7 @@
   <?php if ( $elementos->mision ): ?>
   <div id="mision" class="col-12 col-md-6">    
     <h5 class="stext-primary text-uppercase mb-2">MISIÓN</h5>
-    <hr class="bg-primary">
+    <hr class="border borde-secundario">
     <p><?= $elementos->mision ?></p>
   </div>
   <?php endif ?>
@@ -78,9 +78,9 @@
   <!-- Visión -->
   <?php if ( $elementos->vision ): ?>
   <div id="vision" class="col-12 col-md-6">
-    <h5 class="stext-primary text-uppercase mb-2">VISIÓN</h5>
-    <hr class="bg-primary">
-    <p><?= $elementos->vision ?></p>
+    <h5 class="stext-primary text-uppercase mb-2 text-end">VISIÓN</h5>
+    <hr class="border borde-secundario">
+    <p class="text-end"><?= $elementos->vision ?></p>
   </div>
   <?php endif ?>
   <!-- /Visión -->
@@ -94,20 +94,20 @@
     <div class="row mb-2">
       <div class="col-xs-10 col-sm-8 col-lg-6 text-center mx-auto">
         <h5 class="stext-primary text-uppercase mb-2">DIRECTORIO</h5>
-        <hr class="bg-primary">
+        <hr class="border borde-secundario">
       </div>
     </div>
     <!-- DIRECTORIO -->
     <?php foreach( $elementos->directorio as $key => $directorio): ?>
       <?php if($key == 0): ?>
       <!-- SECRETARIO -->
-      <div class="row ">
-        <div class="col-11 col-md-6 col-lg-5 col-xl-4 mx-auto">
-          <div class="card border border-4 borde-primario" style="border-radius: 10px;">
-            <img class="card-img-top border border-4 borde-primario" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px; border-radius: 10px;" />
+      <div class="row">
+        <div class="col-12 col-sm-11 col-md-6 col-lg-5 col-xl-4 mx-auto">
+          <div class="card border border-5 borde-primario" style="border-radius: 10px;">
+            <img class="card-img-top border-bottom border-4 borde-primario" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
             <div class="card-body py-2 my-3">
               <h6 class="card-title"><?= $directorio->fullname ?></h6>
-              <h6 class="card-text font-weight-bold"><?= $directorio->job_title ?></h6>
+              <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
               <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
             </div>
           </div>
@@ -116,14 +116,14 @@
       <div class="row g-4 mt-5 mb-3">
       <!-- SECRETARIO -->
       <?php else: ?>
-      <div class="col-6 col-md-4 col-lg-3 mx-auto">
-        <div class="card p-2">
-          <img class="card-img rounded-circle border border-4 borde-secundario" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 200px;" />
+      <div class="col-10 col-sm-8 col-md-4 col-lg-3 mx-auto">
+        <div class="card p-2 borde-secundario">
+          <img class="card-img rounded-circle border border-5 borde-secundario" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 280px;" />
           <div class="card-body py-2 mb-3">
             <h6 class="card-title"><?= $directorio->fullname ?></h6>
-            <h6 class="card-text font-weight-bold"><?= $directorio->job_title ?></h6>
-
-            <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
+            <hr class="border borde-secundario my-0">
+            <p class="font-weight-bold texto-secundario"><?= $directorio->job_title ?></p>
+            <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> <?php if ($directorio->phone_ext): ?> | Ext. <?= $directorio->phone_ext ?><?php endif; ?></small>
           </div>
         </div>
       </div>

@@ -111,7 +111,15 @@
 			}
 
 			.borde-secundario {
-				border-color: var(--primario-setab) !important;
+				border-color: var(--secundario-setab) !important;
+			}
+
+			.texto-primario{
+				color: var(--primario-setab) !important;
+			}
+
+			.texto-secundario{
+				color: var(--secundario-setab) !important;
 			}
 		</style>
 
