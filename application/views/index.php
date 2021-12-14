@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<!-- Directorio -->
+<!-- DIRECTORIO -->
 <?php if ( $elementos->directorio ): ?>
 <div id="directorio" class="block block-secondary container container-lg-fluid" style="padding: 3em">
   <div class="container text-center">
@@ -97,44 +97,73 @@
         <hr class="border borde-secundario">
       </div>
     </div>
-    <!-- DIRECTORIO -->
-    <?php foreach( $elementos->directorio as $key => $directorio): ?>
-      <?php if($key == 0): ?>
-      <!-- SECRETARIO -->
-      <div class="row">
-        <div class="col-12 col-sm-11 col-md-6 col-lg-5 col-xl-4 mx-auto">
-          <div class="card border border-5 borde-primario" style="border-radius: 10px;">
-            <img class="card-img-top border-bottom border-4 borde-primario" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
-            <div class="card-body py-2 my-3">
-              <h6 class="card-title"><?= $directorio->fullname ?></h6>
-              <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
-              <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
-            </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+      <?php foreach( $elementos->directorio as $key => $directorio): ?>
+        <?php // Escribir el primer registro unicamente - REGISTRO DE SECREATARIO ?>
+        <!-- SECRETARIO -->
+        <div class="card border-light" style="border-radius: 10px;">
+          <div class="card-body py-2 my-3">
+            <h5 class="card-title"><?= $directorio->fullname ?></h5>
+            <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
           </div>
+          <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+        </div>
+        <!-- /SECRETARIO -->
+        <?php 
+          unset($elementos->directorio[$key]); 
+          break; 
+        ?>
+      <?php endforeach ?>
+      </div>
+      <style type="text/css">
+        .carousel-control-prev-icon {
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+        }
+
+        .carousel-control-next-icon {
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+        }
+      </style>
+      <div class="col-12 col-md-6">
+        <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">          
+          <div class="carousel-inner">
+          <?php foreach( $elementos->directorio as $key => $directorio): ?>
+            <?php if ( $key % 3 == 0 || $key == 1 ): ?>
+              <div class="carousel-item <?= ($key == 1)? 'active' : '' ?>">
+                <div class="row">
+            <?php endif ?>
+                  <div class="col-4 mx-auto">
+                    <div class="card border borde-secundario" style="border-radius: 10px;">
+                      <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />                       
+                      <div class="card-body py-2 my-3">
+                        <h5 class="card-title"><?= $directorio->fullname ?></h5>
+                        <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
+                        <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
+                      </div>
+                    </div>
+                  </div>
+            <?php if ( ( intval($key) + 1) % 3 == 0 || $key == count($elementos->directorio) ): // Cerrará los elementos de cada carousel?>
+                </div>
+              </div>
+            <?php endif; ?>
+          <?php endforeach ?>
+          </div>        
+          <button class="carousel-control-prev" type="button" data-bs-target="#dDirectivos" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#dDirectivos" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
-      <div class="row g-4 mt-5 mb-3">
-      <!-- SECRETARIO -->
-      <?php else: ?>
-      <div class="col-10 col-sm-8 col-md-4 col-lg-3 mx-auto">
-        <div class="card p-2 borde-secundario">
-          <img class="card-img rounded-circle border border-5 borde-secundario" src="https://webcore.setab.gob.mx/setab/private/upfiles/persons/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 280px;" />
-          <div class="card-body py-2 mb-3">
-            <h6 class="card-title"><?= $directorio->fullname ?></h6>
-            <hr class="border borde-secundario my-0">
-            <p class="font-weight-bold texto-secundario"><?= $directorio->job_title ?></p>
-            <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> <?php if ($directorio->phone_ext): ?> | Ext. <?= $directorio->phone_ext ?><?php endif; ?></small>
-          </div>
-        </div>
-      </div>
-      <?php endif; ?>
-    <?php endforeach ?> 
-    <!-- DIRECTORIO -->   
     </div>
   </div>
-</div>
+</div> 
 <?php endif ?>
-<!-- /Directorio -->
+<!-- /DIRECTORIO -->
 
 <!-- Indicadores -->
 <?php if ( $elementos->indicadores ): ?>
