@@ -23,25 +23,23 @@
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <?php foreach ($elementos->noticias as $key => $noticia): ?>
-              <?php if ( $key == 0 || $key % 3 == 0 ): ?>
+                <?php if ( $key == 0 || $key % 3 == 0 ): ?>
                 <li class="glide__slide text-center m-auto">
-                  <?php if ( $key % 3 == 0 ): ?>
                   <div class="row container m-auto">
-                  <?php endif ?>
-              <?php endif ?>
-                <div class="col-10 col-md-4 mx-auto mb-1">
-                  <div class="card my-1" style="max-height: 400px">
-                    <img class="card-img" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
-                    <div class="card-body px-1" >
-                      <h4 class="h5 h4-lg text-dark mb-1 stext-primary"><?= $noticia->titulo ?></h4>
-                      <p class="d-none d-lg-block small text-dark"><?= $noticia->resumen ?></p>
+                <?php endif ?>
+                    <div class="col-10 col-md-4 mx-auto mb-1">
+                      <div class="card my-1" style="max-height: 400px">
+                        <img class="card-img" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
+                        <div class="card-body px-1">
+                          <h4 class="h5 h4-lg text-dark mb-1 stext-primary"><?= $noticia->titulo ?></h4>
+                          <p class="d-none d-lg-block small text-dark"><?= $noticia->resumen ?></p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              <?php if ( ($key+1) % 3 == 0 || $key == count($elementos->noticias) ): ?>
+                <?php if ( ($key+1) % 3 == 0 || $key == count($elementos->noticias) ): ?>
                   </div>
                 </li>
-              <?php endif ?>
+                <?php endif ?>
             <?php endforeach ?>
           </ul>
         </div>
@@ -88,7 +86,52 @@
 </div>
 
 <!-- DIRECTORIO -->
+
+<?php 
+  // Auxiliares 
+  $secretario = array();
+  $directores = array();
+  $personal   = array();
+
+  foreach ($elementos->directorio as $key => $persona) {
+    if ( $persona->job_title == 'SECRETARIA DE EDUCACIÓN' || $persona->job_title == 'SECRETARIO DE EDUCACIÓN' || 
+         $persona->job_title == 'SECRETARIA DE EDUCACION' || $persona->job_title == 'SECRETARIO DE EDUCACION' ){
+
+      $secretario = (object) array(
+        'nombre'    => $persona->fullname,
+        'titulo'    => $persona->job_title,
+        'telefono'  => $persona->phone,
+        'extension' => $persona->phone_ext,
+        'imagen'    => $persona->attachments->jsat_fname,
+      );
+
+    } else {
+      if ( count($personal) == 3 ){ // Separar registro de directores
+        array_push($directores, $personal);
+        $personal = [];
+      }
+
+      array_push($personal, array(
+        'nombre'    => $persona->fullname,
+        'titulo'    => $persona->job_title,
+        'telefono'  => $persona->phone,
+        'extension' => $persona->phone_ext,
+        'imagen'    => $persona->attachments->jsat_fname,
+      ));
+    }
+  }
+?>
 <?php if ( $elementos->directorio ): ?>
+<style type="text/css">
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+  }
+  .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+  }
+
+</style>
+
 <div id="directorio" class="block block-secondary container container-lg-fluid" style="padding: 3em">
   <div class="container text-center">
     <div class="row mb-2">
@@ -98,57 +141,42 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-md-6">
-      <?php foreach( $elementos->directorio as $key => $directorio): ?>
-        <?php // Escribir el primer registro unicamente - REGISTRO DE SECREATARIO ?>
-        <!-- SECRETARIO -->
+      <?php if ( $secretario): ?>
+      <div class="col-md-6">
         <div class="card border-light" style="border-radius: 10px;">
           <div class="card-body py-2 my-3">
-            <h5 class="card-title"><?= $directorio->fullname ?></h5>
-            <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
+            <h5 class="card-title"><?= $secretario->nombre ?></h5>
+            <h6 class="card-text font-weight-bold texto-secundario"><?= $secretario->titulo ?></h6>
           </div>
-          <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+          <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?= $secretario->imagen . '?token=' . TOKEN  ?>" alt="<?= $secretario->nombre ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
         </div>
-        <!-- /SECRETARIO -->
-        <?php 
-          unset($elementos->directorio[$key]); 
-          break; 
-        ?>
-      <?php endforeach ?>
       </div>
-      <style type="text/css">
-        .carousel-control-prev-icon {
-          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
-        }
-
-        .carousel-control-next-icon {
-          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
-        }
-      </style>
-      <div class="col-12 col-md-6">
-        <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">          
+      <?php endif; ?>
+      <?php if ( $directores ): ?>
+      <div class="col-md-6">        
+        <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">
           <div class="carousel-inner">
-          <?php foreach( $elementos->directorio as $key => $directorio): ?>
-            <?php if ( $key % 3 == 0 || $key == 1 ): ?>
-              <div class="carousel-item <?= ($key == 1)? 'active' : '' ?>">
-                <div class="row">
-            <?php endif ?>
+          <?php foreach ( (object) $directores as $key => $personas): ?>            
+            <div class="carousel-item <?= ($key == 0)? 'active' : '' ?>" data-bs-interval="2500">
+              <div class="row">
+                <?php foreach ( $personas as $key => $persona): ?>
                   <div class="col-4 mx-auto">
                     <div class="card border borde-secundario" style="border-radius: 10px;">
-                      <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?php if ($directorio->attachments): ?><?= array_key_exists('jsat_fname', $directorio->attachments)? ($directorio->attachments->jsat_fname) . '?token=' . TOKEN : '' ?><?php endif ?>" alt="Nombre" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />                       
-                      <div class="card-body py-2 my-3">
-                        <h5 class="card-title"><?= $directorio->fullname ?></h5>
-                        <h6 class="card-text font-weight-bold texto-secundario"><?= $directorio->job_title ?></h6>
-                        <small><a href="tel:+52<?= $directorio->phone ?>"><?= $directorio->phone ?></a> - <?= $directorio->phone_ext ?></small>
+                      <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="https://webcore.setab.gob.mx/setab/private/upfiles/<?= DIRECTORIO ?>/<?= $persona['imagen'] . '?token=' . TOKEN  ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
+                      <div class="card-body py-2 my-3 more">
+                        <h5 class="card-title text-dark"><?= $persona['nombre'] ?></h5>
+                        <div class="d-none">
+                          <h6 class="card-text font-weight-bold texto-secundario"><?= $persona['titulo'] ?></h6>
+                          <small><a href="tel:+52<?= $persona['telefono'] ?>"><?= $persona['telefono'] ?></a> - <?= $persona['extension'] ?></small>
+                        </div>
                       </div>
                     </div>
                   </div>
-            <?php if ( ( intval($key) + 1) % 3 == 0 || $key == count($elementos->directorio) ): // Cerrará los elementos de cada carousel?>
-                </div>
+                <?php endforeach ?>
               </div>
-            <?php endif; ?>
+            </div>
           <?php endforeach ?>
-          </div>        
+          </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#dDirectivos" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -159,6 +187,7 @@
           </button>
         </div>
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </div> 
@@ -185,5 +214,6 @@
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function () {
+    noticia
   });
 </script>
