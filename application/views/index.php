@@ -89,13 +89,13 @@
 
 <?php 
   // Auxiliares 
-  $secretario = array();
-  $directores = array();
-  $personal   = array();
+  $secretario   = array();
+  $_directores  = array();
+  $_personal    = array();
 
   foreach ($elementos->directorio as $key => $persona) {
-    if ( $persona->job_title == 'SECRETARIA DE EDUCACIÓN' || $persona->job_title == 'SECRETARIO DE EDUCACIÓN' || 
-         $persona->job_title == 'SECRETARIA DE EDUCACION' || $persona->job_title == 'SECRETARIO DE EDUCACION' ){
+    
+    if ( $persona->job_title == 'SECRETARIA DE EDUCACIÓN' ){
 
       $secretario = (object) array(
         'nombre'    => $persona->fullname,
@@ -106,18 +106,21 @@
       );
 
     } else {
-      if ( count($personal) == 3 ){ // Separar registro de directores
-        array_push($directores, $personal);
-        $personal = [];
+      if ( count($_personal) == 3 ){ // Separar registro de directores
+        array_push($_directores, $_personal);
+        $_personal = [];
       }
 
-      array_push($personal, array(
+      array_push($_personal, array(
         'nombre'    => $persona->fullname,
         'titulo'    => $persona->job_title,
         'telefono'  => $persona->phone,
         'extension' => $persona->phone_ext,
         'imagen'    => $persona->attachments->jsat_fname,
       ));
+
+      if ( $key == count($elementos->directorio) -1 )
+        array_push($_directores, $_personal);
     }
   }
 ?>
@@ -152,11 +155,11 @@
         </div>
       </div>
       <?php endif; ?>
-      <?php if ( $directores ): ?>
-      <div class="col-md-6">        
+      <?php if ( $_directores ): ?>
+      <div class="col-md-6">
         <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">
           <div class="carousel-inner">
-          <?php foreach ( (object) $directores as $key => $personas): ?>            
+          <?php foreach ( (object) $_directores as $key => $personas): ?>            
             <div class="carousel-item <?= ($key == 0)? 'active' : '' ?>" data-bs-interval="2500">
               <div class="row">
                 <?php foreach ( $personas as $key => $persona): ?>
