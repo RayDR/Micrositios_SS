@@ -16,6 +16,8 @@ defined('LIMITE_NOTICIAS') 	OR define('LIMITE_NOTICIAS', 9);
 // Definición de Nombres de Tablas Webcore
 defined('ESQUEMA') 		OR define('ESQUEMA', "microsites");
 
+defined('PUBLIC_URL')	OR define('PUBLIC_URL', "https://webcore.setab.gob.mx/images/");
+
 defined('AREAS') 		OR define('AREAS', "areas");
 defined('NOTICIAS') 	OR define('NOTICIAS', "notes");
 defined('DIRECTORIO') 	OR define('DIRECTORIO', "persons");
@@ -24,6 +26,7 @@ defined('ATTACHMENTS') 	OR define('ATTACHMENTS', "jsattachments");
 defined('MODULES') 		OR define('MODULES', "jsmodules");
 
 defined('TOKEN')		OR define('TOKEN', "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyYmVhbiI6IntcImxhc3RhY2Nlc3NcIjpudWxsLFwiaXNhZG1pblwiOmZhbHNlLFwicHJlZFwiOi0xLFwiaXNyb2xlXCI6ZmFsc2UsXCJpc2FjdGl2ZVwiOnRydWUsXCJuYW1lXCI6XCJVU1VBUklPIFBBUkEgQ09OU1VMVEFSIFJFUE9SVEVTXCIsXCJob3N0XCI6XCJsb2NhbGhvc3RcIixcImFsaWFzXCI6XCJ1c2VycmVwb3J0c1wiLFwiaWRcIjozMDg0MSxcInRhZ1wiOlwiXCIsXCJwYXJhbXNcIjp7fSxcImVtYWlsXCI6XCJjb3JyZW9AbWFpbC5jb21cIn0ifQ.oAxid0Ipz2WIPtU9ml8Q8j1qJR2O-tfftVQUe9l8ahujDHN3JKSD3kgY_W4jr8IrjYtc38gwv-MB5Hc5btmrQw");
+
 
 /*
 |--------------------------------------------------------------------------

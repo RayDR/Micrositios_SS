@@ -21,10 +21,7 @@ class Home extends CI_Controller {
       $this->load->model('areas');
       $cvArea  = ($cvArea)? $cvArea : 'tecnologias';
       $cvArea  = ($cvArea === 'index')? 'tecnologias' : $cvArea;
-
-      // if ( !preg_match('/^192.168.4./', $_SERVER['REMOTE_ADDR']) )
-      //    return $this->load->view('template/maintenance');
-
+            
       $area    = $this->areas->get_area($cvArea);
 
       if ( !$area )
