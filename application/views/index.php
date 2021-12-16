@@ -7,8 +7,8 @@
       <div class="carousel-item <?= ($key == 0)? 'active': '' ?>">
         <img src="<?= PUBLIC_URL ?><?= AREAS ?>/<?= array_key_exists('jsat_fname', $imagen)? ($imagen->jsat_fname) . '?token=' . TOKEN: '' ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/bgsetab.jpg') ?>'" class="img-fluid w-100" style="max-height: 100vh;" alt="<?= $elementos->nombre ?>">
         <!-- <div class="text-blur" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"> -->
-          <h1 class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: transparent; background-color: transparent;"><?= $elementos->nombre ?></h1>
-        </div>
+          <h1 style="position: absolute; top: 0%; lef background-color: transparent; color: transparent;"><?= $elementos->nombre ?></h1>
+        <!-- </div> -->
       </div>
       <?php endforeach ?>
     <?php endif ?>
@@ -17,45 +17,43 @@
 
 <!-- Noticias -->
 <?php 
-  // // Auxiliares 
-  // $secretario   = array();
-  // $_directores  = array();
-  // $_personal    = array();
+  // Auxiliares 
+  $noticias = array();
+  $_noticias = array();
 
-  // foreach ($elementos->noticias as $key => $noticia) {
-  //   if ( count($_personal) == 3 ){ // Separar registro de directores
-  //     array_push($_directores, $_personal);
-  //     $_personal = [];
-  //   }
+  foreach ($elementos->noticias as $key => $noticia) {
+    if ( count($_noticias) == 3 ){ // Separar registro de directores
+      array_push($noticias, $_noticias);
+      $noticias = [];
+    }
 
-  //   array_push($_personal, array(
-  //     'titulo'    => $noticia->titulo,
-  //     'resumen'   => $noticia->resumen,
-  //     'telefono'  => $noticia->phone,
-  //     'extension' => $noticia->phone_ext,
-  //     'imagen'    => $noticia->attachments->jsat_fname,
-  //   ));
+    array_push($_noticias, array(
+      'titulo'    => $noticia->titulo,
+      'resumen'   => $noticia->resumen,
+      'imagen'    => $noticia->attachment,
+    ));
 
-  //   if ( $key == count($elementos->directorio) -1 )
-  //     array_push($_directores, $_personal);
-  // }
+    if ( $key == count($elementos->directorio) -1 )
+      array_push($noticias, $_noticias);
+  }
 ?>
-<?php if( $elementos->noticias ): ?>
+<?php if( $noticias ): ?>
   <div id="noticias" class="mb-0 py-0 container-fluid">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div id="cNoticias" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <?php foreach ($noticias as $key => $noticia): ?>
+        <button type="button" data-bs-target="#cNoticias" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <?php endforeach ?>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <?php foreach ($elementos->noticias as $key => $noticia): ?>
+          <?php foreach ($noticias as $key => $noticia): ?>
                 <?php if ( $key == 0 || $key % 3 == 0 ): ?>
-                <li class="glide__slide text-center m-auto">
                   <div class="row container m-auto">
                 <?php endif ?>
                     <div class="col-10 col-md-4 mx-auto mb-1">
                       <div class="card my-1" style="max-height: 400px">
-                        <img class="card-img" src="<?= PUBLIC_URL ?><?= NOTICIAS ?>/<?php if ($noticia->attachment): ?><?= array_key_exists('jsat_fname', $noticia->attachment)? ($noticia->attachment->jsat_fname) . '?token=' . TOKEN: '' ?><?php endif ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
+                        <img class="card-img" src="<?= PUBLIC_URL ?><?= NOTICIAS ?>/<?= $noticia->imagen ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
                         <div class="card-body px-1">
                           <h4 class="h5 h4-lg text-dark mb-1 stext-primary"><?= $noticia->titulo ?></h4>
                           <p class="d-none d-lg-block small text-dark"><?= $noticia->resumen ?></p>
@@ -64,16 +62,15 @@
                     </div>
                 <?php if ( ($key+1) % 3 == 0 || $key == count($elementos->noticias) ): ?>
                   </div>
-                </li>
                 <?php endif ?>
             <?php endforeach ?>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#cNoticias" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#cNoticias" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
@@ -183,7 +180,7 @@
                 <?php foreach ( $personas as $key => $persona): ?>
                   <div class="col-4 mx-auto">
                     <div class="card border borde-secundario" style="border-radius: 10px;">
-                      <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $persona['imagen'] ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
+                      <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $persona['imagen'] ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/avatar.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
                       <div class="card-body py-2 my-3 more">
                         <h5 class="card-title text-dark"><?= $persona['nombre'] ?></h5>
                         <div class="d-none">
