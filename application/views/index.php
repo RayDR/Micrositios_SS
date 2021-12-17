@@ -18,10 +18,14 @@
 <!-- Noticias -->
 <?php 
   // Auxiliares 
-  $noticias = array();
-  $_noticias = array();
+  $noticias         = array();
+  $noticiasMobile   = array();
+  $_noticias        = array();
 
   foreach ($elementos->noticias as $key => $noticia) {
+    if ( count($_noticias) == 2 )
+      array_push($noticiasMobile, $_noticias);
+
     if ( count($_noticias) == 3 ){ // Separar registro de directores
       array_push($noticias, $_noticias);
       $noticias = [];
@@ -33,51 +37,52 @@
       'imagen'    => $noticia->attachment,
     ));
 
-    if ( $key == count($elementos->directorio) -1 )
+    if ( $key == count($_noticias) -1 ){
       array_push($noticias, $_noticias);
+      if ( count($_noticias) > 2 ){
+        array_push($noticiasMobile, array(
+          'titulo'    => $noticia->titulo,
+          'resumen'   => $noticia->resumen,
+          'imagen'    => $noticia->attachment,
+        ));
+      }
+    }
   }
 ?>
-<?php if( $noticias ): ?>
-  <div id="noticias" class="mb-0 py-0 container-fluid">
-    <div id="cNoticias" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <?php foreach ($noticias as $key => $noticia): ?>
-        <button type="button" data-bs-target="#cNoticias" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <?php endforeach ?>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <?php foreach ($noticias as $key => $noticia): ?>
-                <?php if ( $key == 0 || $key % 3 == 0 ): ?>
-                  <div class="row container m-auto">
-                <?php endif ?>
-                    <div class="col-10 col-md-4 mx-auto mb-1">
-                      <div class="card my-1" style="max-height: 400px">
-                        <img class="card-img" src="<?= PUBLIC_URL ?><?= NOTICIAS ?>/<?= $noticia->imagen ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia->titulo ?>">
-                        <div class="card-body px-1">
-                          <h4 class="h5 h4-lg text-dark mb-1 stext-primary"><?= $noticia->titulo ?></h4>
-                          <p class="d-none d-lg-block small text-dark"><?= $noticia->resumen ?></p>
-                        </div>
-                      </div>
-                    </div>
-                <?php if ( ($key+1) % 3 == 0 || $key == count($elementos->noticias) ): ?>
-                  </div>
-                <?php endif ?>
+          
+<?php if( false ): ?>
+<div id="noticias" class="mb-0 py-0 container-fluid">
+  <div id="cNoticias" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <?php foreach ( $noticias as $idx => $notas): ?>
+        <div class="carousel-item <?= ($idx == 0)? 'active' : '' ?>" data-bs-interval="35000">
+          <div class="row container m-auto">
+            <?php foreach ( $notas as $key => $noticia): ?>
+            <div class="col-4 mx-auto mb-1">
+              <div class="card my-1" style="max-height: 400px">
+                <img class="card-img" src="<?= PUBLIC_URL ?><?= NOTICIAS ?>/<?= $noticia['imagen'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/SETAB_COLOR.png') ?>'" alt="<?= $noticia['titulo'] ?>">
+                <div class="card-body px-1">
+                  <h4 class="h5 h4-lg text-dark mb-1 stext-primary"><?= $noticia['titulo'] ?></h4>
+                  <p class="d-none d-lg-block small text-dark"><?= $noticia['resumen'] ?></p>
+                </div>
+              </div>
+            </div>
             <?php endforeach ?>
+          </div>
         </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#cNoticias" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#cNoticias" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <?php endforeach ?>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#cNoticias" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cNoticias" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+</div>
 <?php else: ?>
-
   <div id="noticias" class="my-0 py-0 container-fluid py-53">
     <h3 class="text-center py-5 text-muted">No hay noticias para mostrar.</h3>
   </div>
@@ -114,9 +119,10 @@
 
 <?php 
   // Auxiliares 
-  $secretario   = array();
-  $_directores  = array();
-  $_personal    = array();
+  $secretario     = array();
+  $directores     = array();
+  $_directores    = array();
+  $_personal      = array();
 
   foreach ($elementos->directorio as $key => $persona) {
     
@@ -131,8 +137,11 @@
       );
 
     } else {
-      if ( count($_personal) == 3 ){ // Separar registro de directores
+      if ( count($_personal) == 2 )
         array_push($_directores, $_personal);
+
+      if ( count($_personal) == 3 ){ // Separar registro de directores
+        array_push($directores, $_personal);
         $_personal = [];
       }
 
@@ -145,7 +154,10 @@
       ));
 
       if ( $key == count($elementos->directorio) -1 )
-        array_push($_directores, $_personal);
+        if ( count($_personal)){
+          array_push($directores, $_personal);
+          array_push($_directores, $_personal);
+        }
     }
   }
 ?>
@@ -160,31 +172,31 @@
     </div>
     <div class="row">
       <?php if ( $secretario ): ?>
-      <div class="col-md-6">
+      <div class="col-md-6 mb-3">
         <div class="card border-light" style="border-radius: 10px;">
           <div class="card-body py-2 my-3">
             <h5 class="card-title"><?= $secretario->nombre ?></h5>
             <h6 class="card-text font-weight-bold texto-secundario"><?= $secretario->titulo ?></h6>
           </div>
-          <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $secretario->imagen?>" alt="<?= $secretario->nombre ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
+          <img class="card-img-top border border-5 borde-primario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $secretario->imagen?>" alt="<?= $secretario->nombre ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/avatar.png') ?>'" style="max-height: 400px; min-height: 200px;" />
         </div>
       </div>
       <?php endif; ?>
-      <?php if ( $_directores ): ?>
+      <?php if ( $directores ): ?>
       <div class="col-md-6">
-        <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">
+        <div id="dDirectivos" class="carousel slide mt-lg-5 d-none d-lg-block" data-bs-ride="carousel">
           <div class="carousel-inner">
-          <?php foreach ( (object) $_directores as $key => $personas): ?>            
+          <?php foreach ( (object) $directores as $key => $personas): ?>            
             <div class="carousel-item <?= ($key == 0)? 'active' : '' ?>" data-bs-interval="2500">
               <div class="row">
                 <?php foreach ( $personas as $key => $persona): ?>
-                  <div class="col-4 mx-auto">
+                  <div class="col-12 col-lg-6 col-xl-4 mx-auto mb-5 mb-lg-0 col-lg-1">
                     <div class="card border borde-secundario" style="border-radius: 10px;">
                       <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $persona['imagen'] ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/avatar.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
                       <div class="card-body py-2 my-3 more">
-                        <h5 class="card-title text-dark"><?= $persona['nombre'] ?></h5>
+                        <h5 class="card-title text-dark" style="font-size: 3vmin"><?= $persona['nombre'] ?></h5>
                         <div class="d-none">
-                          <h6 class="card-text font-weight-bold texto-secundario"><?= $persona['titulo'] ?></h6>
+                          <h6 class="card-text font-weight-bold texto-secundario display-5"><?= $persona['titulo'] ?></h6>
                           <small><a href="tel:+52<?= $persona['telefono'] ?>"><?= $persona['telefono'] ?></a> - <?= $persona['extension'] ?></small>
                         </div>
                       </div>
@@ -200,6 +212,38 @@
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#dDirectivos" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div id="dDirectivosMobile" class="carousel slide mt-lg-5 d-block d-lg-none" data-bs-ride="carousel">
+          <div class="carousel-inner">
+          <?php foreach ( (object) $_directores as $key => $personas): ?>
+            <div class="carousel-item <?= ($key == 0)? 'active' : '' ?>" data-bs-interval="2500">
+              <div class="row">
+                <?php foreach ( $personas as $key => $persona): ?>
+                  <div class="col-6 mx-auto mb-5 mb-lg-0 col-lg-1">
+                    <div class="card border borde-secundario" style="border-radius: 10px;">
+                      <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $persona['imagen'] ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/avatar.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
+                      <div class="card-body py-2 my-3 more">
+                        <h5 class="card-title text-dark" style="font-size: 3vmin"><?= $persona['nombre'] ?></h5>
+                        <div class="d-none">
+                          <h6 class="card-text font-weight-bold texto-secundario display-5"><?= $persona['titulo'] ?></h6>
+                          <small><a href="tel:+52<?= $persona['telefono'] ?>"><?= $persona['telefono'] ?></a> - <?= $persona['extension'] ?></small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach ?>
+              </div>
+            </div>
+          <?php endforeach ?>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#dDirectivosMobile" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#dDirectivosMobile" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
