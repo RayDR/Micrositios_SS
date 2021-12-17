@@ -4,15 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group   = ENVIRONMENT;
 $query_builder  = TRUE;
 
-$db_hostname    = '192.168.0.40';
+$db_hostname    = '10.57.18.18';
 
-$db_database    = 'postgres_prd_x';
+$db_database    = 'postgres';
 
 $db_username    = 'postgres';
 $db_password    = 'Zetina2021**';
 
 
-$db['production'] = array(
+$db['development'] = array(
     'dsn'      => "pgsql:host=10.57.18.18;port=5432;dbname={$db_database};user={$db_username};password={$db_password}",
     'hostname' => $db_hostname,
     'username' => $db_username,
@@ -34,7 +34,7 @@ $db['production'] = array(
     'save_queries' => TRUE
 );
 
-$db['development'] = array(
+$db['production'] = array(
     'dsn'      => "pgsql:host={$db_hostname};port=5432;dbname={$db_database};user={$db_username};password={$db_password}",
     'hostname' => $db_hostname,
     'username' => $db_username,
