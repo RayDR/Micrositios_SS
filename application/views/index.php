@@ -111,44 +111,6 @@
 </div>
 
 <!-- DIRECTORIO -->
-
-<?php 
-  // Auxiliares 
-  $secretario   = array();
-  $_directores  = array();
-  $_personal    = array();
-
-  foreach ($elementos->directorio as $key => $persona) {
-    
-    if ( $persona->job_title == 'SECRETARIA DE EDUCACIÓN' ){
-
-      $secretario = (object) array(
-        'nombre'    => $persona->fullname,
-        'titulo'    => $persona->job_title,
-        'telefono'  => $persona->phone,
-        'extension' => $persona->phone_ext,
-        'imagen'    => $persona->attachments->jsat_fname,
-      );
-
-    } else {
-      if ( count($_personal) == 3 ){ // Separar registro de directores
-        array_push($_directores, $_personal);
-        $_personal = [];
-      }
-
-      array_push($_personal, array(
-        'nombre'    => $persona->fullname,
-        'titulo'    => $persona->job_title,
-        'telefono'  => $persona->phone,
-        'extension' => $persona->phone_ext,
-        'imagen'    => $persona->attachments->jsat_fname,
-      ));
-
-      if ( $key == count($elementos->directorio) -1 )
-        array_push($_directores, $_personal);
-    }
-  }
-?>
 <?php if ( $elementos->directorio ): ?>
 <div id="directorio" class="block block-secondary container container-lg-fluid" style="padding: 3em">
   <div class="container text-center">
@@ -158,54 +120,46 @@
         <hr class="border borde-secundario">
       </div>
     </div>
-    <div class="row">
-      <?php if ( $secretario ): ?>
-      <div class="col-md-6">
-        <div class="card border-light" style="border-radius: 10px;">
-          <div class="card-body py-2 my-3">
-            <h5 class="card-title"><?= $secretario->nombre ?></h5>
-            <h6 class="card-text font-weight-bold texto-secundario"><?= $secretario->titulo ?></h6>
-          </div>
-          <img loading="lazy" class="card-img-top border border-4 borde-primario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $secretario->imagen?>" alt="<?= $secretario->nombre ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'" style="max-height: 400px; min-height: 200px;" />
-        </div>
-      </div>
-      <?php endif; ?>
-      <?php if ( $_directores ): ?>
-      <div class="col-md-6">
-        <div id="dDirectivos" class="carousel slide mt-lg-5" data-bs-ride="carousel">
-          <div class="carousel-inner">
-          <?php foreach ( (object) $_directores as $key => $personas): ?>            
-            <div class="carousel-item <?= ($key == 0)? 'active' : '' ?>" data-bs-interval="2500">
-              <div class="row">
-                <?php foreach ( $personas as $key => $persona): ?>
-                  <div class="col-4 mx-auto">
-                    <div class="card border borde-secundario" style="border-radius: 10px;">
-                      <img loading="lazy" class="card-img-top border border-4 borde-secundario rounded" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $persona['imagen'] ?>" alt="<?= $persona['nombre'] ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/avatar.png') ?>'" style="max-height: 400px; min-height: 200px;" />                     
-                      <div class="card-body py-2 my-3 more">
-                        <h5 class="card-title text-dark"><?= $persona['nombre'] ?></h5>
-                        <div class="d-none">
-                          <h6 class="card-text font-weight-bold texto-secundario"><?= $persona['titulo'] ?></h6>
-                          <small><a href="tel:+52<?= $persona['telefono'] ?>"><?= $persona['telefono'] ?></a> - <?= $persona['extension'] ?></small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <?php endforeach ?>
-              </div>
+    <div class="row org-wrapper">
+      <div class="organigrama">
+        <ul>
+          <li>
+        <?php if ( count($elementos->directorio) > 0 ): ?>
+          <?php $secretario = (object) array_shift($elementos->directorio); ?>
+            <div class="user" style="width: 20rem;">
+              <img loading="lazy" class="rounded img-fluid" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $secretario->attachments->jsat_fname?>" alt="<?= $secretario->fullname ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'"/>
+              <h5 class="name texto-secundario h1" style="max-width: 20rem;"><?= $secretario->fullname ?></h5>
+              <h6 class="role" style="max-width: 20rem;"><?= $secretario->job_title ?></h6>
             </div>
-          <?php endforeach ?>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#dDirectivos" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#dDirectivos" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+            <ul>            
+            <?php if ( count($elementos->directorio) > 1 ): ?>
+              <?php $subsecretario = (object) array_shift($elementos->directorio); ?>
+              <li>
+                <div class="user" style="max-width: 15rem;">
+                  <img loading="lazy" class="rounded img-fluid" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $subsecretario->attachments->jsat_fname?>" alt="<?= $subsecretario->fullname ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'"/>
+                  <h5 class="name texto-secundario h1" style="max-width: 15rem;"><?= $subsecretario->fullname ?></h5>
+                  <h6 class="role" style="max-width: 15rem;"><?= $subsecretario->job_title ?></h6>
+                </div>
+                <ul>
+                  <?php foreach ($elementos->directorio as $key => $director): ?>
+                    <li class="mb-2">
+                      <div class="user">
+                        <img loading="lazy" class="rounded img-fluid" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $director->attachments->jsat_fname?>" alt="<?= $director->fullname ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'"/>
+                        <p class="name text-normal h1"><?= $director->fullname ?></p>
+                        <p class="role"><?= $director->job_title ?></p>
+                        <!-- <p class="manager"><?= $director->job_title ?></p> -->
+                      </div>
+                    </li>
+                  <?php endforeach ?>
+                </ul>
+              </li>
+
+            <?php endif; ?>
+            </ul>        
+        <?php endif; ?>
+          </li>
+        </ul>
       </div>
-      <?php endif; ?>
     </div>
   </div>
 </div> 
@@ -242,3 +196,122 @@
     noticia
   });
 </script>
+
+<style type="text/css">
+  .org-wrapper {
+    /*background: #ccc;*/
+  }
+
+  .organigrama {
+    display: flex;
+    justify-content: center;
+  }
+  .organigrama ul {
+    padding-top: 20px;
+    position: relative;
+    transition: all 0.5s;
+  }
+  .organigrama ul ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+  }
+  .organigrama li {
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 10px;
+    transition: all 0.5s;
+  }
+  .organigrama li::before, .organigrama li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #ccc;
+    width: 50%;
+    height: 20px;
+  }
+  .organigrama li::after {
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #ccc;
+  }
+  .organigrama li:only-child::after, .organigrama li:only-child::before {
+    display: none;
+  }
+  .organigrama li:only-child {
+    padding-top: 0;
+  }
+  .organigrama li:first-child::before, .organigrama li:last-child::after {
+    border: 0 none;
+  }
+  .organigrama li:last-child::before {
+    border-right: 1px solid #ccc;
+    border-radius: 0 5px 0 0;
+  }
+  .organigrama li:first-child::after {
+    border-radius: 5px 0 0 0;
+  }
+  .organigrama li .user {
+    text-decoration: none;
+    color: #666;
+    display: inline-block;
+    padding: 20px 10px;
+    transition: all 0.5s;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  .organigrama li .user:hover, .organigrama li .user:hover + ul li .user {
+    background: #fcfbf9;
+    color: #9d2449;
+    transition: all 0.15s;
+    transform: translateY(-5px);
+    box-shadow: inset 0 0 0 3px #e4d7c5, 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  .organigrama li .user:hover img, .organigrama li .user:hover + ul li .user img {
+    box-shadow: 0 0 0 5px #d4bea2;
+  }
+  .organigrama li .user:hover + ul li::after,
+  .organigrama li .user:hover + ul li::before,
+  .organigrama li .user:hover + ul::before,
+  .organigrama li .user:hover + ul ul::before {
+    border-color: #94a0b4;
+  }
+  .organigrama li .user > div, .organigrama li .user > a {
+    font-size: 0.8rem;
+  }
+  .organigrama li .user img {
+    margin: 0 auto;
+    max-width: 60px;
+    max-width: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #aaa;
+  }
+  .organigrama li .user .name {
+    color: var(--secundario-setab);
+    font-size: 0.80rem;
+    margin: 15px 0 0;
+    font-weight: 300;
+    max-width: 10rem;
+  }
+  .organigrama li .user .role {
+    font-weight: 600;
+    font-size: 0.80rem;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    max-width: 10rem;
+  }
+  .organigrama li .user .manager {
+    font-size: 0.75px;
+    color: #b21e04;
+  }
+
+</style>
