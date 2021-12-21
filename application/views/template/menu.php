@@ -7,7 +7,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= base_url() ?>">INICIO</a>
                     </li>               

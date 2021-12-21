@@ -109,7 +109,6 @@
   <!-- /Visión -->
   </div>
 </div>
-
 <!-- DIRECTORIO -->
 <?php if ( $elementos->directorio ): ?>
 <div id="directorio" class="block block-secondary container container-lg-fluid" style="padding: 3em">
@@ -126,10 +125,10 @@
           <li>
         <?php if ( count($elementos->directorio) > 0 ): ?>
           <?php $secretario = (object) array_shift($elementos->directorio); ?>
-            <div class="user" style="width: 20rem;">
+            <div class="user" style="width: 19rem;">
               <img loading="lazy" class="rounded img-fluid" src="<?= PUBLIC_URL ?><?= DIRECTORIO ?>/<?= $secretario->attachments->jsat_fname?>" alt="<?= $secretario->fullname ?>" onerror="this.onerror=null; this.src = '<?= base_url('sources/img/favicon.png') ?>'"/>
-              <h5 class="name texto-secundario h1" style="max-width: 20rem;"><?= $secretario->fullname ?></h5>
-              <h6 class="role" style="max-width: 20rem;"><?= $secretario->job_title ?></h6>
+              <h5 class="name texto-secundario h1" style="max-width: 19rem;"><?= $secretario->fullname ?></h5>
+              <h6 class="role" style="max-width: 19rem;"><?= $secretario->job_title ?></h6>
             </div>
             <ul>            
             <?php if ( count($elementos->directorio) > 1 ): ?>
